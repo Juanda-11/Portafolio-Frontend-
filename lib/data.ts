@@ -18,7 +18,7 @@ export const profile = {
   cvUrl: "/cv.pdf",
   /** Cuando tengas una foto, ponla en public/yo.png y descomenta esta línea. */
   // photo: "/yo.png",
-  photo: WhatsApp Image 2026-10-22 at 11.01.06 PM.jpeg,
+  photo: /WhatsApp Image 2026-10-22 at 11.01.06 PM.jpeg,
 };
 
 export const navLinks: NavLink[] = [
