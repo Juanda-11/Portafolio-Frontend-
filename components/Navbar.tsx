@@ -62,7 +62,7 @@ export default function Navbar() {
             {profile.initials}
           </span>
           <span className="hidden font-heading text-lg font-bold text-ink sm:block">
-            {profile.name}
+            {profile.shortName}
           </span>
         </a>
 
