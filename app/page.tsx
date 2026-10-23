@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="pb-28 lg:pb-0 lg:pl-24">
         {/* Secciones provisionales: se reemplazan una a una en las siguientes etapas */}
         <Hero />
         {navLinks.filter(({ id }) => id !== "inicio").map(({ id, label }) => (

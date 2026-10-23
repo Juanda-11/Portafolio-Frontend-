@@ -24,7 +24,7 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative mx-auto grid min-h-[calc(100vh-5rem)] max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-2"
+      className="relative mx-auto grid min-h-screen max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-2"
     >
       <div className="text-center md:text-left">
         <motion.span
@@ -116,7 +116,7 @@ export default function Hero() {
         />
         <div className="absolute inset-6 overflow-hidden rounded-full border-4 border-white bg-gradient-to-br from-sky-400 via-blue-500 to-blue-800 shadow-2xl shadow-blue-900/20">
           {profile.photo ? (
-            <Image src={profile.photo} alt={`Foto de ${profile.shortName}`} fill className="object-cover" priority />
+            <Image src={profile.photo} alt={`Foto de ${profile.shortName}`} fill sizes="(min-width: 640px) 28rem, 90vw" className="object-cover" style={{ objectPosition: "50% 28%" }} priority />
           ) : (
             <div className="grid h-full w-full place-items-center">
               <span className="font-heading text-8xl font-extrabold text-white/95 drop-shadow-lg sm:text-9xl">

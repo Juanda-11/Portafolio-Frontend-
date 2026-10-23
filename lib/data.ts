@@ -11,14 +11,12 @@ export const profile = {
   tagline:
     "Construyo interfaces claras y cuidadas, pensando siempre en quien las va a usar.",
   university: "Universidad Cooperativa de Colombia · Campus Pasto",
-  semester: "8.º semestre",
+  semester: "4.º semestre",
   emailInstitutional: "juand.jurado@campusucc.edu.co",
   emailPersonal: "juandaju448@gmail.com",
   github: "https://github.com/juanda-11",
   cvUrl: "/cv.pdf",
-  /** Cuando tengas una foto, ponla en public/yo.png y descomenta esta línea. */
-  // photo: "/yo.png",
-  photo: /WhatsApp Image 2026-10-22 at 11.01.06 PM.jpeg,
+  photo: "/yo.jpg" as string | undefined,
 };
 
 export const navLinks: NavLink[] = [
