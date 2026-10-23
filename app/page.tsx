@@ -15,7 +15,7 @@ export default function Home() {
             id={id}
             className="grid min-h-screen place-items-center px-6"
           >
-            <h2 className="font-heading text-4xl font-bold text-ink">{label}</h2>
+            <h2 className="font-display text-5xl uppercase text-fg">{label}</h2>
           </section>
         ))}
       </main>

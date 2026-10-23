@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Nunito, Outfit } from "next/font/google";
+import { Anton, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const heading = Outfit({
-  variable: "--font-heading",
+const display = Anton({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: "400",
 });
 
-const body = Nunito({
+const body = Space_Grotesk({
   variable: "--font-body",
   subsets: ["latin"],
 });
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${heading.variable} ${body.variable} ${code.variable} scroll-smooth antialiased`}
+      className={`${display.variable} ${body.variable} ${code.variable} scroll-smooth antialiased`}
     >
       <body className="min-h-screen">{children}</body>
     </html>

@@ -56,18 +56,18 @@ function SideRail({ active }: { active: string }) {
       initial={false}
       animate={{ width: expanded ? 232 : 72 }}
       transition={{ type: "spring", stiffness: 320, damping: 32 }}
-      className="fixed bottom-4 left-4 top-4 z-50 hidden flex-col overflow-hidden rounded-[28px] border border-white bg-white/80 p-3 shadow-xl shadow-blue-900/10 backdrop-blur-xl lg:flex"
+      className="fixed bottom-4 left-4 top-4 z-50 hidden flex-col overflow-hidden rounded-[28px] border border-white/10 bg-panel/95 p-3 shadow-2xl shadow-black/50 backdrop-blur-xl lg:flex"
     >
       <a
         href="#inicio"
         aria-label={`${profile.name} - ir al inicio`}
         className="flex h-12 items-center gap-3 rounded-2xl"
       >
-        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-sky-500 to-blue-700 font-heading text-base font-extrabold text-white shadow-md shadow-blue-500/30">
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-electric to-violet font-display text-lg tracking-wide text-white shadow-lg shadow-electric/40">
           {profile.initials}
         </span>
         <span
-          className={`whitespace-nowrap font-heading text-base font-bold text-ink transition-opacity duration-200 ${
+          className={`whitespace-nowrap font-display text-lg uppercase tracking-wide text-fg transition-opacity duration-200 ${
             expanded ? "opacity-100 delay-100" : "opacity-0"
           }`}
         >
@@ -75,7 +75,7 @@ function SideRail({ active }: { active: string }) {
         </span>
       </a>
 
-      <ul className="my-auto flex flex-col gap-2 rounded-3xl bg-sky-50/70 p-0 py-2">
+      <ul className="my-auto flex flex-col gap-2 rounded-3xl bg-white/5 p-0 py-2">
         {navLinks.map(({ id, label }) => {
           const Icon = icons[id];
           const isActive = active === id;
@@ -90,20 +90,20 @@ function SideRail({ active }: { active: string }) {
                 {isActive && (
                   <motion.span
                     layoutId="rail-active"
-                    className="absolute left-0 top-0 h-12 w-12 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 shadow-lg shadow-blue-500/40"
+                    className="absolute left-0 top-0 h-12 w-12 rounded-2xl bg-gradient-to-br from-electric to-violet shadow-lg shadow-electric/50"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
                 <span
                   className={`relative grid h-12 w-12 shrink-0 place-items-center transition-colors ${
-                    isActive ? "text-white" : "text-ink-soft group-hover:text-blue-600"
+                    isActive ? "text-white" : "text-muted group-hover:text-white"
                   }`}
                 >
                   <Icon size={22} aria-hidden />
                 </span>
                 <span
                   className={`whitespace-nowrap text-sm font-bold transition-opacity duration-200 ${
-                    isActive ? "text-blue-700" : "text-ink-soft group-hover:text-blue-600"
+                    isActive ? "text-white" : "text-muted group-hover:text-white"
                   } ${expanded ? "opacity-100 delay-100" : "opacity-0"}`}
                 >
                   {label}
@@ -118,7 +118,7 @@ function SideRail({ active }: { active: string }) {
         href={profile.cvUrl}
         download
         aria-label="Descargar CV"
-        className="flex h-12 items-center gap-3 rounded-2xl bg-gradient-to-r from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/30 transition-shadow hover:shadow-lg"
+        className="flex h-12 items-center gap-3 rounded-2xl bg-gold text-black shadow-lg shadow-gold/20 transition-shadow hover:shadow-gold/40"
       >
         <span className="grid h-12 w-12 shrink-0 place-items-center">
           <Download size={20} aria-hidden />
@@ -144,11 +144,11 @@ function BottomBar({ active }: { active: string }) {
   return (
     <nav
       aria-label="Navegación principal"
-      className="fixed inset-x-3 bottom-3 z-50 h-16 drop-shadow-[0_10px_24px_rgba(30,64,175,0.18)] lg:hidden"
+      className="fixed inset-x-3 bottom-3 z-50 h-16 drop-shadow-[0_10px_24px_rgba(0,0,0,0.6)] lg:hidden"
     >
       <div
         aria-hidden
-        className="bottom-bar-bg absolute inset-0 rounded-3xl bg-white"
+        className="bottom-bar-bg absolute inset-0 rounded-3xl border border-white/10 bg-panel"
         style={{ "--notch-x": x } as React.CSSProperties}
       />
       <ul
@@ -171,7 +171,7 @@ function BottomBar({ active }: { active: string }) {
                     <motion.span
                       layoutId="bar-active"
                       transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                      className="absolute left-1/2 top-[-20px] grid h-[52px] w-[52px] -translate-x-1/2 place-items-center rounded-full bg-gradient-to-br from-sky-400 to-blue-600 text-white shadow-lg shadow-blue-500/40"
+                      className="absolute left-1/2 top-[-20px] grid h-[52px] w-[52px] -translate-x-1/2 place-items-center rounded-full bg-gradient-to-br from-electric to-violet text-white shadow-lg shadow-electric/50"
                     >
                       <Icon size={22} aria-hidden />
                     </motion.span>
@@ -180,14 +180,14 @@ function BottomBar({ active }: { active: string }) {
                         key={id}
                         initial={{ opacity: 0, y: 4 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="absolute bottom-2 text-[11px] font-bold text-blue-700"
+                        className="absolute bottom-2 text-[11px] font-bold text-gold"
                       >
                         {label}
                       </motion.span>
                     </AnimatePresence>
                   </>
                 ) : (
-                  <Icon size={22} className="text-ink-soft" aria-hidden />
+                  <Icon size={22} className="text-muted" aria-hidden />
                 )}
               </a>
             </li>
