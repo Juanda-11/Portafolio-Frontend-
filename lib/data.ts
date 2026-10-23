@@ -24,6 +24,19 @@ export const about = [
   "Me considero una persona creativa, curiosa y comprometida con mi aprendizaje, con iniciativa para proponer ideas y convertirlas en proyectos funcionales. Me gusta explorar nuevas tecnologías, mejorar la experiencia de usuario mediante interfaces intuitivas y trabajar en proyectos que integren innovación y utilidad, como aplicaciones orientadas a la agricultura inteligente y al impacto social. Mi objetivo es continuar fortaleciendo mis habilidades técnicas y crecer profesionalmente como desarrollador de software, participando en proyectos que aporten valor a las personas y a la sociedad.",
 ];
 
+export const quickFacts = [
+  { label: "Ubicación", value: "Pasto, Colombia" },
+  { label: "Semestre", value: "4.º semestre" },
+  { label: "Carrera", value: "Ingeniería de Software" },
+  { label: "Universidad", value: "UCC · Campus Pasto" },
+];
+
+export const skillGroups = [
+  { title: "Frameworks", items: ["Next.js", "React", "React Native", "Expo", "Tailwind CSS", "Express"] },
+  { title: "Lenguajes", items: ["TypeScript", "Java", "Python"] },
+  { title: "Intereses", items: ["Diseño UI/UX", "Estructuras de datos", "Patrones de diseño", "Agricultura inteligente", "Impacto social"] },
+];
+
 /** Frameworks y tecnologías que se muestran en la cinta del Hero. */
 export const stack = [
   "Next.js",

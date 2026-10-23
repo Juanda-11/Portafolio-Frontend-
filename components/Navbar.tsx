@@ -118,7 +118,7 @@ function SideRail({ active }: { active: string }) {
         href={profile.cvUrl}
         download
         aria-label="Descargar CV"
-        className="flex h-12 items-center gap-3 rounded-2xl bg-gold text-black shadow-lg shadow-gold/20 transition-shadow hover:shadow-gold/40"
+        className="flex h-12 items-center gap-3 rounded-2xl bg-white text-black shadow-lg shadow-electric/30 transition-shadow hover:shadow-electric/60"
       >
         <span className="grid h-12 w-12 shrink-0 place-items-center">
           <Download size={20} aria-hidden />
@@ -180,7 +180,7 @@ function BottomBar({ active }: { active: string }) {
                         key={id}
                         initial={{ opacity: 0, y: 4 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="absolute bottom-2 text-[11px] font-bold text-gold"
+                        className="absolute bottom-2 text-[11px] font-bold text-bolt"
                       >
                         {label}
                       </motion.span>

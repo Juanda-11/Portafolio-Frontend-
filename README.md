@@ -10,7 +10,7 @@ npm run dev   # http://localhost:3000
 ## Progreso de secciones
 - [x] 1. Menú de navegación (`components/Navbar.tsx`)
 - [x] 2. Hero + CV (`components/Hero.tsx`)
-- [ ] 3. Acerca de mí
+- [x] 3. Acerca de mí (`components/About.tsx`)
 - [ ] 4. Mis proyectos
 - [ ] 5. Testimonios
 - [ ] 6. Experiencia académica y laboral

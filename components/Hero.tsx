@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowDownToLine, ArrowUpRight, Sparkle } from "lucide-react";
+import { ArrowDownToLine, ArrowUpRight, Zap } from "lucide-react";
+import Lightning from "@/components/Lightning";
 import { profile, stack } from "@/lib/data";
 
 const fadeUp = {
@@ -37,11 +38,11 @@ function PhotoCard() {
       style={{ perspective: 1000 }}
       className="relative mx-auto w-full max-w-sm"
     >
-      <div aria-hidden className="absolute -inset-10 rounded-full bg-gradient-to-br from-electric/50 via-violet/40 to-gold/20 blur-3xl" />
+      <div aria-hidden className="absolute -inset-10 rounded-full bg-gradient-to-br from-electric/60 via-violet/30 to-bolt/20 blur-3xl" />
       <div aria-hidden className="dots absolute -right-6 -top-6 h-40 w-40 opacity-60 sm:-right-10" />
 
       <motion.div style={{ rotateX, rotateY, transformStyle: "preserve-3d" }} className="relative">
-        <div className="rounded-[2.5rem] bg-gradient-to-br from-electric via-violet to-gold p-[3px] shadow-2xl shadow-black/60">
+        <div className="rounded-[2.5rem] bg-gradient-to-br from-electric via-bolt to-violet p-[3px] shadow-2xl shadow-black/60">
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2.35rem] bg-panel">
             {profile.photo ? (
               <Image
@@ -59,6 +60,10 @@ function PhotoCard() {
               </div>
             )}
             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-electric/10" />
+            <div
+              aria-hidden
+              className="absolute -left-10 -top-10 h-56 w-56 rounded-full bg-[conic-gradient(from_90deg,#ff3b6b,#ffd23f,#3bff9c,#3bb7ff,#9b5cff,#ff3b6b)] opacity-40 mix-blend-screen blur-2xl"
+            />
             <p className="absolute bottom-4 left-5 font-mono text-xs uppercase tracking-[0.2em] text-white/80">
               ● UCC · Pasto
             </p>
@@ -69,7 +74,7 @@ function PhotoCard() {
           animate={{ rotate: [-8, -4, -8] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           style={{ translateZ: 60 }}
-          className="absolute -left-4 top-8 rounded-lg bg-gold px-3 py-1.5 font-display text-lg uppercase tracking-wide text-black shadow-xl sm:-left-10"
+          className="absolute -left-4 top-8 rounded-lg bg-white px-3 py-1.5 font-display text-lg uppercase tracking-wide text-black shadow-xl sm:-left-10"
         >
           4.º semestre
         </motion.span>
@@ -83,12 +88,12 @@ function PhotoCard() {
         </motion.span>
         <motion.span
           aria-hidden
-          animate={{ rotate: 360 }}
-          transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+          animate={{ scale: [1, 1.2, 1], rotate: [-8, 8, -8] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           style={{ translateZ: 80 }}
-          className="absolute -bottom-6 -left-4 text-gold sm:-left-8"
+          className="absolute -bottom-6 -left-4 text-bolt drop-shadow-[0_0_12px_rgba(59,139,255,0.9)] sm:-left-8"
         >
-          <Sparkle size={54} fill="currentColor" strokeWidth={0} />
+          <Zap size={54} fill="currentColor" strokeWidth={0} />
         </motion.span>
       </motion.div>
     </motion.div>
@@ -98,14 +103,14 @@ function PhotoCard() {
 function Tape() {
   const items = [...stack, ...stack];
   return (
-    <div className="marquee pointer-events-auto absolute inset-x-0 bottom-8 -rotate-2 overflow-hidden bg-gold py-3 shadow-2xl shadow-black/50 lg:bottom-12">
+    <div className="marquee pointer-events-auto absolute inset-x-0 bottom-8 -rotate-2 overflow-hidden bg-electric py-3 shadow-[0_0_40px_rgba(59,139,255,0.45)] lg:bottom-12">
       <div className="marquee-track flex w-max whitespace-nowrap">
         {[0, 1].map((dup) => (
           <ul key={dup} aria-hidden={dup === 1} className="flex shrink-0 items-center">
             {items.slice(0, stack.length).map((t, i) => (
-              <li key={`${t}-${i}`} className="flex items-center font-display text-xl uppercase tracking-wide text-black sm:text-2xl">
+              <li key={`${t}-${i}`} className="flex items-center font-display text-xl uppercase tracking-wide text-white sm:text-2xl">
                 <span className="px-6">{t}</span>
-                <Sparkle size={16} fill="currentColor" strokeWidth={0} aria-hidden />
+                <Zap size={16} fill="currentColor" strokeWidth={0} aria-hidden />
               </li>
             ))}
           </ul>
@@ -125,6 +130,8 @@ export default function Hero() {
         Portafolio
       </div>
 
+      <Lightning className="absolute right-[34%] top-0 hidden h-[88%] w-56 md:block" />
+
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-14 px-6 pb-44 pt-16 md:grid-cols-[1.15fr_0.85fr] lg:pb-48">
         <div className="text-center md:text-left">
           <motion.p
@@ -132,9 +139,9 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="font-mono text-xs uppercase tracking-[0.25em] text-gold sm:text-sm"
+            className="font-serif text-sm font-semibold uppercase tracking-[0.4em] text-bolt sm:text-base"
           >
-            {"// Portafolio · Diseño de Interfaces"}
+            Portafolio · Diseño de Interfaces
           </motion.p>
 
           <motion.h1
@@ -144,7 +151,7 @@ export default function Hero() {
             animate="show"
             className="mt-4 font-display text-[clamp(3.6rem,11vw,8.5rem)] uppercase leading-[0.9] tracking-tight"
           >
-            <span className="block text-fg">Juan David</span>
+            <span className="chroma block text-fg">Juan David</span>
             <span className="block bg-gradient-to-r from-electric via-cyan to-violet bg-clip-text text-transparent">
               Jurado Paz
             </span>
@@ -158,6 +165,21 @@ export default function Hero() {
             className="mt-5 inline-block -rotate-1 rounded-md bg-white/10 px-3 py-1 font-mono text-sm font-bold uppercase tracking-wider text-fg backdrop-blur"
           >
             {profile.role}
+          </motion.p>
+
+          <motion.p
+            custom={2.5}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mt-5 flex items-center justify-center gap-3 md:justify-start"
+          >
+            <span className="neon rounded-full border-2 border-white px-4 py-0.5 font-display text-lg uppercase tracking-widest">
+              Open
+            </span>
+            <span className="font-serif text-lg font-semibold uppercase tracking-[0.2em] text-fg/80">
+              a nuevos proyectos
+            </span>
           </motion.p>
 
           <motion.p
@@ -180,7 +202,7 @@ export default function Hero() {
             <a
               href={profile.cvUrl}
               download
-              className="group inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 font-display text-lg uppercase tracking-wide text-black shadow-lg shadow-gold/25 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-gold/40"
+              className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-display text-lg uppercase tracking-wide text-black shadow-[0_0_30px_rgba(124,200,255,0.45)] transition hover:-translate-y-1 hover:shadow-[0_0_44px_rgba(124,200,255,0.8)]"
             >
               <ArrowDownToLine size={20} aria-hidden className="transition-transform group-hover:translate-y-0.5" />
               Descargar CV

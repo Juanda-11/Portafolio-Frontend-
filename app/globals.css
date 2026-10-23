@@ -8,7 +8,7 @@
   --electric: #3b6dff;
   --violet: #7c3aed;
   --cyan: #38bdf8;
-  --gold: #ffd23f;
+  --bolt: #7cc8ff;
 }
 
 @theme inline {
@@ -19,10 +19,11 @@
   --color-electric: var(--electric);
   --color-violet: var(--violet);
   --color-cyan: var(--cyan);
-  --color-gold: var(--gold);
+  --color-bolt: var(--bolt);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
   --font-mono: var(--font-code);
+  --font-serif: var(--font-serif);
 }
 
 html {
@@ -35,7 +36,7 @@ section[id] {
 }
 
 ::selection {
-  background: var(--gold);
+  background: var(--bolt);
   color: #000;
 }
 
@@ -43,7 +44,7 @@ body {
   background:
     radial-gradient(55rem 38rem at 8% -8%, rgba(59, 109, 255, 0.35), transparent 60%),
     radial-gradient(48rem 34rem at 100% 25%, rgba(124, 58, 237, 0.28), transparent 60%),
-    radial-gradient(40rem 26rem at 40% 110%, rgba(255, 210, 63, 0.1), transparent 60%),
+    radial-gradient(40rem 26rem at 40% 110%, rgba(124, 200, 255, 0.12), transparent 60%),
     var(--night);
   background-attachment: fixed;
   color: var(--fg);
@@ -60,6 +61,39 @@ body::before {
   opacity: 0.07;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Textura de plástico arrugado, como en la portada de referencia */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 59;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: soft-light;
+  background-size: cover;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='.008 .016' numOctaves='5' seed='7'/><feDiffuseLighting lighting-color='white' surfaceScale='4'><feDistantLight azimuth='40' elevation='50'/></feDiffuseLighting></filter><rect width='100%' height='100%' filter='url(%23c)'/></svg>");
+}
+
+/* Aberración cromática en títulos */
+.chroma {
+  text-shadow: 2px 0 rgba(255, 40, 90, 0.55), -2px 0 rgba(40, 200, 255, 0.55);
+}
+.chroma:hover {
+  animation: glitch 0.5s steps(2, end) 1;
+}
+@keyframes glitch {
+  0% { text-shadow: 6px 0 rgba(255, 40, 90, 0.7), -6px 0 rgba(40, 200, 255, 0.7); }
+  50% { text-shadow: -4px 2px rgba(255, 40, 90, 0.7), 4px -2px rgba(40, 200, 255, 0.7); }
+  100% { text-shadow: 2px 0 rgba(255, 40, 90, 0.55), -2px 0 rgba(40, 200, 255, 0.55); }
+}
+
+/* Cartel de neón */
+.neon {
+  color: #fff;
+  text-shadow: 0 0 4px #fff, 0 0 14px #3b8bff, 0 0 34px #3b8bff;
+  box-shadow: 0 0 6px #fff, 0 0 18px rgba(59, 139, 255, 0.9), inset 0 0 14px rgba(59, 139, 255, 0.5);
 }
 
 @property --notch-x {

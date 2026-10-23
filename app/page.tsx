@@ -1,3 +1,4 @@
+import About from "@/components/About";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import { navLinks } from "@/lib/data";
@@ -9,7 +10,8 @@ export default function Home() {
       <main className="pb-28 lg:pb-0 lg:pl-24">
         {/* Secciones provisionales: se reemplazan una a una en las siguientes etapas */}
         <Hero />
-        {navLinks.filter(({ id }) => id !== "inicio").map(({ id, label }) => (
+        <About />
+        {navLinks.filter(({ id }) => id !== "inicio" && id !== "sobre-mi").map(({ id, label }) => (
           <section
             key={id}
             id={id}

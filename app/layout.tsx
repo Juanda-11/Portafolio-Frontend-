@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anton, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Anton, Cormorant_Garamond, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const display = Anton({
@@ -11,6 +11,12 @@ const display = Anton({
 const body = Space_Grotesk({
   variable: "--font-body",
   subsets: ["latin"],
+});
+
+const serif = Cormorant_Garamond({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 const code = JetBrains_Mono({
@@ -27,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${display.variable} ${body.variable} ${code.variable} scroll-smooth antialiased`}
+      className={`${display.variable} ${body.variable} ${code.variable} ${serif.variable} scroll-smooth antialiased`}
     >
       <body className="min-h-screen">{children}</body>
     </html>
