@@ -11,7 +11,7 @@ npm run dev   # http://localhost:3000
 - [x] 1. Menú de navegación (`components/Navbar.tsx`)
 - [x] 2. Hero + CV (`components/Hero.tsx`)
 - [x] 3. Acerca de mí (`components/About.tsx`)
-- [ ] 4. Mis proyectos
+- [x] 4. Mis proyectos (`components/Projects.tsx` + `data/projects.ts`)
 - [ ] 5. Testimonios
 - [ ] 6. Experiencia académica y laboral
 - [ ] 7. Contactos

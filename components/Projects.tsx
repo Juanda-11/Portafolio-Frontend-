@@ -1,0 +1,193 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Download, Server } from "lucide-react";
+import { projects, type Platform, type Project } from "@/data/projects";
+
+const filters: ("Todos" | Platform)[] = ["Todos", "Web", "Móvil", "Escritorio", "Smartwatch"];
+
+function GithubMark({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+    </svg>
+  );
+}
+
+const reveal = {
+  hidden: { opacity: 0, y: 36 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" as const } },
+};
+
+function LinkButton({
+  href,
+  children,
+  primary = false,
+}: {
+  href: string;
+  children: React.ReactNode;
+  primary?: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={
+        primary
+          ? "inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-display text-base uppercase tracking-wide text-black shadow-[0_0_24px_rgba(124,200,255,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(124,200,255,0.7)]"
+          : "inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2.5 text-sm font-bold text-fg transition hover:-translate-y-0.5 hover:border-electric hover:bg-electric/15"
+      }
+    >
+      {children}
+    </a>
+  );
+}
+
+function ProjectCard({ project: p, index }: { project: Project; index: number }) {
+  const contain = p.imageFit === "contain";
+  return (
+    <motion.article
+      layout
+      variants={reveal}
+      initial="hidden"
+      whileInView="show"
+      exit={{ opacity: 0, scale: 0.95 }}
+      viewport={{ once: true, margin: "-60px" }}
+      className="group flex flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-panel/70 shadow-xl shadow-black/40 backdrop-blur transition duration-300 hover:-translate-y-2 hover:border-electric/60 hover:shadow-[0_20px_60px_rgba(59,109,255,0.25)]"
+    >
+      <div
+        className="relative aspect-[16/10] overflow-hidden"
+        style={{ background: contain ? p.imageBg : undefined }}
+      >
+        <Image
+          src={p.image}
+          alt={`Captura de ${p.title}`}
+          fill
+          sizes="(min-width: 768px) 28rem, 90vw"
+          className={`transition-transform duration-700 group-hover:scale-105 ${contain ? "object-contain p-3" : "object-cover"}`}
+          style={{ objectPosition: p.imagePosition }}
+        />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-panel via-transparent to-transparent opacity-80" />
+        <span className="absolute left-4 top-4 rounded-md bg-white px-2.5 py-1 font-display text-sm uppercase tracking-wide text-black shadow-lg">
+          {p.platform}
+        </span>
+        {p.demo && (
+          <span className="absolute right-4 top-4 flex items-center gap-2 rounded-full border border-white/15 bg-night/80 px-3 py-1 font-serif text-xs font-bold uppercase tracking-[0.2em] text-fg backdrop-blur">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            En vivo
+          </span>
+        )}
+        <span className="absolute bottom-3 right-5 font-display text-5xl text-white/10">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+      </div>
+
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="font-display text-3xl uppercase tracking-wide text-fg">{p.title}</h3>
+        <p className="mt-3 flex-1 leading-relaxed text-muted">{p.description}</p>
+
+        <ul className="mt-5 flex flex-wrap gap-2">
+          {p.tags.map((t) => (
+            <li key={t} className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-bold text-fg">
+              {t}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          {p.demo && (
+            <LinkButton href={p.demo} primary>
+              Ver en vivo <ArrowUpRight size={18} aria-hidden />
+            </LinkButton>
+          )}
+          <LinkButton href={p.github}>
+            <GithubMark /> {p.githubBackend ? "Frontend" : "Código"}
+          </LinkButton>
+          {p.githubBackend && (
+            <LinkButton href={p.githubBackend}>
+              <Server size={16} aria-hidden /> Backend
+            </LinkButton>
+          )}
+          {p.apk && (
+            <LinkButton href={p.apk}>
+              <Download size={16} aria-hidden /> APK
+            </LinkButton>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+export default function Projects() {
+  const [filter, setFilter] = useState<(typeof filters)[number]>("Todos");
+  const shown = projects.filter((p) => filter === "Todos" || p.platform === filter);
+  const available = new Set(projects.map((p) => p.platform));
+
+  return (
+    <section id="proyectos" className="relative mx-auto max-w-6xl px-6 py-28">
+      <motion.p
+        variants={reveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="font-serif text-sm font-semibold uppercase tracking-[0.4em] text-bolt sm:text-base"
+      >
+        02 — Mis proyectos
+      </motion.p>
+      <motion.h2
+        variants={reveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mt-3 font-display text-6xl uppercase leading-[0.95] sm:text-7xl"
+      >
+        <span className="chroma">Lo que</span> <span className="text-outline">construí</span>
+      </motion.h2>
+      <motion.p
+        variants={reveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mt-5 max-w-2xl text-lg text-muted"
+      >
+        Proyectos de la materia que se pueden ver funcionando y cuyo código está en GitHub. Los que tienen backend
+        separado enlazan ambos repositorios.
+      </motion.p>
+
+      <div role="tablist" aria-label="Filtrar por plataforma" className="mt-8 flex flex-wrap gap-2">
+        {filters
+          .filter((f) => f === "Todos" || available.has(f))
+          .map((f) => (
+            <button
+              key={f}
+              role="tab"
+              aria-selected={filter === f}
+              onClick={() => setFilter(f)}
+              className={`rounded-full border px-5 py-2 font-display text-base uppercase tracking-wide transition ${
+                filter === f
+                  ? "border-transparent bg-gradient-to-r from-electric to-violet text-white shadow-lg shadow-electric/40"
+                  : "border-white/15 text-muted hover:border-white/40 hover:text-white"
+              }`}
+            >
+              {f}
+            </button>
+          ))}
+      </div>
+
+      <motion.div layout className="mt-10 grid gap-8 md:grid-cols-2">
+        <AnimatePresence mode="popLayout">
+          {shown.map((p, i) => (
+            <ProjectCard key={p.title} project={p} index={i} />
+          ))}
+        </AnimatePresence>
+      </motion.div>
+    </section>
+  );
+}

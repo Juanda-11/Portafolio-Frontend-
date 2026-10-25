@@ -1,6 +1,7 @@
 import About from "@/components/About";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
+import Projects from "@/components/Projects";
 import { navLinks } from "@/lib/data";
 
 export default function Home() {
@@ -11,7 +12,8 @@ export default function Home() {
         {/* Secciones provisionales: se reemplazan una a una en las siguientes etapas */}
         <Hero />
         <About />
-        {navLinks.filter(({ id }) => id !== "inicio" && id !== "sobre-mi").map(({ id, label }) => (
+        <Projects />
+        {navLinks.filter(({ id }) => id !== "inicio" && id !== "sobre-mi" && id !== "proyectos").map(({ id, label }) => (
           <section
             key={id}
             id={id}
