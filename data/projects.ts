@@ -13,8 +13,10 @@ export type Project = {
   githubBackend?: string;
   /** Despliegue en Vercel / demo en vivo. */
   demo?: string;
-  /** Enlace de descarga del APK. Cuando lo tengas, agrégalo y aparece el botón solo. */
+  /** Enlace de descarga del APK (Android). Si lo defines, aparece el botón solo. */
   apk?: string;
+  /** Enlace de descarga del instalador de escritorio (.exe). Si lo defines, aparece el botón solo. */
+  exe?: string;
   /** Imagen en /public/projects (recomendado .webp). */
   image: string;
   /** "cover" recorta para llenar; "contain" muestra la imagen completa (capturas verticales). */
@@ -37,7 +39,7 @@ export const projects: Project[] = [
     github: "https://github.com/Juanda-11/Proyectos-de-interfaces",
     githubBackend: "https://github.com/Juanda-11/Proyectos-de-interfaces-MB",
     demo: "https://foodlink-ashen.vercel.app/",
-    apk: "https://expo.dev/accounts/juanda_11/projects/foodlink-v2/builds/20d32248-bd76-44bf-a26c-ff21f181ba23",
+    apk: "https://github.com/Juanda-11/Proyectos-de-interfaces/releases/download/v1.0.0/application-20d32248-bd76-44bf-a26c-ff21f181ba23.apk",
     image: "/projects/foodlink.webp",
     imageFit: "cover",
     imagePosition: "50% 0%",
@@ -54,6 +56,7 @@ export const projects: Project[] = [
     github: "https://github.com/Juanda-11/Proyectos-de-interfaces-E",
     githubBackend: "https://github.com/Juanda-11/Proyectos-de-interfaces-EB",
     demo: "https://hydrographia.vercel.app/",
+    exe: "https://github.com/Juanda-11/Proyectos-de-interfaces-E/releases/download/v1.0.0/HydroGraph-AI-1.0.0-win-x64.exe",
     image: "/projects/hydrograph.webp",
   },
   {
@@ -68,7 +71,7 @@ export const projects: Project[] = [
     github: "https://github.com/Juanda-11/Proyectos-de-interfaces-S",
     githubBackend: "https://github.com/Juanda-11/Proyectos-de-interfaces-SB",
     demo: "https://smartwatch-drab-gamma.vercel.app/",
-    apk: "https://expo.dev/accounts/juanda_11/projects/workerwatch/builds/ff423cf0-21dd-4085-b99d-300232823c65",
+    apk: "https://github.com/Juanda-11/Proyectos-de-interfaces-S/releases/download/v1.0.0/WorkerWatch.apk.apk",
     image: "/projects/workerwatch.webp",
     imageFit: "contain",
     imageBg: "#000",

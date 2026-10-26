@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Download, Server } from "lucide-react";
+import { ArrowUpRight, Download, Monitor, Server } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 import { projects, type Platform, type Project } from "@/data/projects";
 import { useT } from "@/lib/preferences";
@@ -111,7 +111,12 @@ function ProjectCard({ project: p, index }: { project: Project; index: number })
           )}
           {p.apk && (
             <LinkButton href={p.apk}>
-              <Download size={16} aria-hidden /> APK
+              <Download size={16} aria-hidden /> {t("projects.apk")}
+            </LinkButton>
+          )}
+          {p.exe && (
+            <LinkButton href={p.exe}>
+              <Monitor size={16} aria-hidden /> {t("projects.exe")}
             </LinkButton>
           )}
         </div>
