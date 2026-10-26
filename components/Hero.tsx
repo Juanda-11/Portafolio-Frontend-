@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowDownToLine, ArrowUpRight, Zap } from "lucide-react";
+import { ArrowDownToLine, ArrowUpRight, MapPin, Zap } from "lucide-react";
 import Lightning from "@/components/Lightning";
+import { cvLinkProps } from "@/lib/cv";
 import { profile, stack } from "@/lib/data";
 import { useT } from "@/lib/preferences";
 
@@ -53,7 +54,7 @@ function PhotoCard() {
                 fill
                 sizes="(min-width: 640px) 24rem, 90vw"
                 className="object-cover"
-                style={{ objectPosition: "50% 30%" }}
+                style={{ objectPosition: "57% 36%", transform: "scale(1.5)", transformOrigin: "57% 39%" }}
                 priority
               />
             ) : (
@@ -66,7 +67,7 @@ function PhotoCard() {
               aria-hidden
               className="absolute -left-10 -top-10 h-56 w-56 rounded-full bg-[conic-gradient(from_90deg,#ff3b6b,#ffd23f,#3bff9c,#3bb7ff,#9b5cff,#ff3b6b)] opacity-40 mix-blend-screen blur-2xl"
             />
-            <p className="absolute bottom-4 left-5 font-mono text-xs uppercase tracking-[0.2em] text-fg/80">
+            <p className="absolute bottom-4 left-5 font-mono text-[13px] uppercase tracking-[0.2em] text-fg/80">
               ● {t("hero.caption")}
             </p>
           </div>
@@ -84,7 +85,7 @@ function PhotoCard() {
           animate={{ rotate: [6, 10, 6] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           style={{ translateZ: 60 }}
-          className="absolute -right-3 bottom-16 rounded-lg border border-fg/20 bg-panel/90 px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-fg shadow-xl backdrop-blur sm:-right-8"
+          className="absolute -right-3 bottom-16 rounded-lg border border-fg/20 bg-panel/90 px-3 py-1.5 font-mono text-[13px] font-bold uppercase tracking-wider text-fg shadow-xl backdrop-blur sm:-right-8"
         >
           {t("hero.sticker.career")}
         </motion.span>
@@ -123,7 +124,7 @@ function Tape() {
 }
 
 export default function Hero() {
-  const { t, l } = useT();
+  const { t, l, locale } = useT();
   return (
     <section id="inicio" className="relative flex min-h-screen flex-col justify-center overflow-hidden">
       <div
@@ -178,9 +179,9 @@ export default function Hero() {
             className="mt-5 flex items-center justify-center gap-3 md:justify-start"
           >
             <span className="neon rounded-full border-2 border-fg px-4 py-0.5 font-display text-lg uppercase tracking-widest">
-              {t("hero.open")}
+              <span lang="en">{t("hero.open")}</span>
             </span>
-            <span className="font-serif text-lg font-semibold uppercase tracking-[0.2em] text-fg/80">
+            <span className="font-serif text-base font-semibold uppercase tracking-[0.1em] text-fg/80 sm:text-lg sm:tracking-[0.2em]">
               {t("hero.openFor")}
             </span>
           </motion.p>
@@ -195,6 +196,17 @@ export default function Hero() {
             {l(profile.tagline)}
           </motion.p>
 
+          <motion.p
+            custom={3.5}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mt-3 flex items-center justify-center gap-2 text-sm font-bold text-muted md:justify-start"
+          >
+            <MapPin size={16} aria-hidden className="text-bolt" />
+            {profile.location}
+          </motion.p>
+
           <motion.div
             custom={4}
             variants={fadeUp}
@@ -203,8 +215,7 @@ export default function Hero() {
             className="mt-9 flex flex-wrap justify-center gap-4 md:justify-start"
           >
             <a
-              href={l(profile.cvUrl)}
-              download
+              {...cvLinkProps(locale)}
               className="group inline-flex items-center gap-2 rounded-full bg-cta px-7 py-4 font-display text-lg uppercase tracking-wide text-cta-fg shadow-[0_0_30px_rgba(124,200,255,0.45)] transition hover:-translate-y-1 hover:shadow-[0_0_44px_rgba(124,200,255,0.8)]"
             >
               <ArrowDownToLine size={20} aria-hidden className="transition-transform group-hover:translate-y-0.5" />

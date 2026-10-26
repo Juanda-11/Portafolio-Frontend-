@@ -76,6 +76,17 @@ section[id] {
   scroll-margin-top: 1.5rem;
 }
 
+/* Foco visible y consistente para quien navega con teclado */
+:focus-visible {
+  outline: 3px solid var(--bolt);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 ::selection {
   background: var(--bolt);
   color: #000;
@@ -177,8 +188,20 @@ body::after {
   animation: marquee 32s linear infinite;
 }
 
-.marquee:hover .marquee-track {
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
   animation-play-state: paused;
+}
+
+@media (prefers-contrast: more) {
+  .chroma {
+    text-shadow: none;
+    animation: none;
+  }
+  body::before,
+  body::after {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

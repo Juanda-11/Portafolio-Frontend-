@@ -39,7 +39,7 @@ function Detail({ step, index }: { step: Step; index: number }) {
       </h3>
       <p className="mt-4 text-lg leading-relaxed text-muted">{l(step.description)}</p>
 
-      <p className="mt-8 font-serif text-xs font-semibold uppercase tracking-[0.35em] text-muted">
+      <p className="mt-8 font-serif text-sm font-semibold uppercase tracking-[0.35em] text-muted">
         {t("process.practice")}
       </p>
       <ul className="mt-4 grid gap-3">

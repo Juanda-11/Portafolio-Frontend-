@@ -10,6 +10,7 @@ export function pick(text: Text, locale: Locale): string {
 }
 
 const es = {
+  "skip": "Saltar al contenido",
   "nav.aria": "Navegación principal",
   "nav.cv": "Descargar CV",
   "nav.theme.toLight": "Tema claro",
@@ -112,6 +113,7 @@ const es = {
 export type DictKey = keyof typeof es;
 
 const en: Record<DictKey, string> = {
+  "skip": "Skip to content",
   "nav.aria": "Main navigation",
   "nav.cv": "Download CV",
   "nav.theme.toLight": "Light theme",

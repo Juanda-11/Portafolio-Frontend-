@@ -28,10 +28,10 @@ export default function Footer() {
 
         <nav aria-label={t("footer.aria")}>
           <h2 className="font-serif text-sm font-semibold uppercase tracking-[0.35em] text-bolt">{t("footer.links")}</h2>
-          <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 md:grid-cols-1">
+          <ul className="mt-3 grid grid-cols-2 gap-x-6 md:grid-cols-1">
             {navLinks.map(({ id, label }) => (
               <li key={id}>
-                <a href={`#${id}`} className="font-bold text-muted transition hover:text-fg">
+                <a href={`#${id}`} className="inline-block py-1.5 font-bold text-muted transition hover:text-fg">
                   {l(label)}
                 </a>
               </li>

@@ -123,7 +123,7 @@ export default function Contact() {
                   <Icon size={22} />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block font-serif text-xs font-semibold uppercase tracking-[0.3em] text-muted">
+                  <span className="block font-serif text-sm font-semibold uppercase tracking-[0.3em] text-muted">
                     {l(label)}
                   </span>
                   <span className="block truncate font-bold text-fg">{value}</span>
@@ -184,15 +184,15 @@ export default function Contact() {
                 className="grid gap-4"
               >
                 <label className="grid gap-2">
-                  <span className="font-serif text-xs font-semibold uppercase tracking-[0.3em] text-muted">{t("contact.name")}</span>
+                  <span className="font-serif text-sm font-semibold uppercase tracking-[0.3em] text-muted">{t("contact.name")}</span>
                   <input name="name" required minLength={2} maxLength={80} autoComplete="name" placeholder={t("contact.namePh")} className={field} />
                 </label>
                 <label className="grid gap-2">
-                  <span className="font-serif text-xs font-semibold uppercase tracking-[0.3em] text-muted">{t("contact.email")}</span>
+                  <span className="font-serif text-sm font-semibold uppercase tracking-[0.3em] text-muted">{t("contact.email")}</span>
                   <input name="email" type="email" required maxLength={120} autoComplete="email" placeholder={t("contact.emailPh")} className={field} />
                 </label>
                 <label className="grid gap-2">
-                  <span className="font-serif text-xs font-semibold uppercase tracking-[0.3em] text-muted">{t("contact.message")}</span>
+                  <span className="font-serif text-sm font-semibold uppercase tracking-[0.3em] text-muted">{t("contact.message")}</span>
                   <textarea name="message" required minLength={10} maxLength={2000} rows={5} placeholder={t("contact.messagePh")} className={`${field} resize-y`} />
                 </label>
 

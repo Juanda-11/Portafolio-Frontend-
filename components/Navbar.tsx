@@ -15,6 +15,7 @@ import {
   Workflow,
 } from "lucide-react";
 import Logo from "@/components/Logo";
+import { cvLinkProps } from "@/lib/cv";
 import { navLinks, profile } from "@/lib/data";
 import { useLocale, useT, useTheme } from "@/lib/preferences";
 
@@ -55,6 +56,26 @@ function SideRail({ active }: { active: string }) {
   const { theme, toggleTheme } = useTheme();
   const { locale, toggleLocale } = useLocale();
 
+  // Primera visita de la sesión: el menú se abre un momento para mostrar qué hay en cada icono.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let hide: ReturnType<typeof setTimeout>;
+    const show = setTimeout(() => {
+      try {
+        if (window.sessionStorage.getItem("rail-hint")) return;
+        window.sessionStorage.setItem("rail-hint", "1");
+      } catch {
+        /* sin sessionStorage: se muestra igual */
+      }
+      setExpanded(true);
+      hide = setTimeout(() => setExpanded(false), 2600);
+    }, 1400);
+    return () => {
+      clearTimeout(show);
+      clearTimeout(hide);
+    };
+  }, []);
+
   return (
     <motion.nav
       aria-label={t("nav.aria")}
@@ -82,7 +103,7 @@ function SideRail({ active }: { active: string }) {
           }`}
         >
           <span className="font-display text-xl uppercase tracking-wide text-fg">{profile.shortName}</span>
-          <span className="mt-1 font-serif text-xs font-semibold uppercase tracking-[0.3em] text-bolt">Jurado Paz</span>
+          <span className="mt-1 font-serif text-sm font-semibold uppercase tracking-[0.3em] text-bolt">Jurado Paz</span>
         </span>
       </a>
 
@@ -163,8 +184,7 @@ function SideRail({ active }: { active: string }) {
       </div>
 
       <a
-        href={l(profile.cvUrl)}
-        download
+        {...cvLinkProps(locale)}
         aria-label={t("nav.cv")}
         className="flex h-12 items-center gap-3 rounded-2xl bg-cta text-cta-fg shadow-lg shadow-electric/30 transition-shadow hover:shadow-electric/60"
       >
@@ -229,7 +249,7 @@ function BottomBar({ active }: { active: string }) {
                         key={id}
                         initial={{ opacity: 0, y: 4 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="absolute bottom-2 text-[11px] font-bold text-bolt"
+                        className="absolute bottom-2 text-xs font-bold text-bolt"
                       >
                         {l(label)}
                       </motion.span>

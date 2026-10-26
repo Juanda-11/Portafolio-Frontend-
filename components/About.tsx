@@ -104,7 +104,7 @@ export default function About() {
               type="button"
               onClick={() => setMore((v) => !v)}
               aria-expanded={more}
-              className="inline-flex items-center gap-2 font-display text-lg uppercase tracking-wide text-bolt transition hover:text-fg"
+              className="inline-flex items-center gap-2 py-2 font-display text-lg uppercase tracking-wide text-bolt transition hover:text-fg"
             >
               {more ? t("about.less") : t("about.more")}
               <ChevronDown size={18} aria-hidden className={`transition-transform ${more ? "rotate-180" : ""}`} />
@@ -130,7 +130,7 @@ export default function About() {
                     <Icon size={20} aria-hidden />
                   </span>
                   <div>
-                    <dt className="font-serif text-xs font-semibold uppercase tracking-[0.3em] text-muted">{l(label)}</dt>
+                    <dt className="font-serif text-sm font-semibold uppercase tracking-[0.3em] text-muted">{l(label)}</dt>
                     <dd className="font-bold text-fg">{l(value)}</dd>
                   </div>
                 </div>
