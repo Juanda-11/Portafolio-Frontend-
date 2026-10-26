@@ -1,28 +1,35 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ComponentType } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Download, Menu, X } from "lucide-react";
+import {
+  Briefcase,
+  Download,
+  FolderKanban,
+  Home,
+  Mail,
+  MessageSquareQuote,
+  User,
+} from "lucide-react";
 import { navLinks, profile } from "@/lib/data";
 
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+type Icon = ComponentType<{ size?: number; className?: string; "aria-hidden"?: boolean }>;
+
+const icons: Record<string, Icon> = {
+  inicio: Home,
+  "sobre-mi": User,
+  proyectos: FolderKanban,
+  testimonios: MessageSquareQuote,
+  experiencia: Briefcase,
+  contacto: Mail,
+};
+
+function useActiveSection() {
   const [active, setActive] = useState(navLinks[0].id);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        });
+        entries.forEach((e) => e.isIntersecting && setActive(e.target.id));
       },
       { rootMargin: "-45% 0px -50% 0px" },
     );
@@ -32,123 +39,171 @@ export default function Navbar() {
     });
     return () => observer.disconnect();
   }, []);
+  return active;
+}
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
+/** Escritorio: riel vertical de iconos que se expande al acercar el mouse. */
+function SideRail({ active }: { active: string }) {
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 px-4 pt-4">
-      <nav
-        aria-label="Navegación principal"
-        className={`mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-4 py-3 transition-all duration-300 sm:px-6 ${
-          scrolled
-            ? "border-sky-100 bg-white/80 shadow-lg shadow-sky-900/5 backdrop-blur-xl"
-            : "border-transparent bg-white/50 backdrop-blur-md"
-        }`}
+    <motion.nav
+      aria-label="Navegación principal"
+      onHoverStart={() => setExpanded(true)}
+      onHoverEnd={() => setExpanded(false)}
+      onFocus={() => setExpanded(true)}
+      onBlur={() => setExpanded(false)}
+      initial={false}
+      animate={{ width: expanded ? 232 : 72 }}
+      transition={{ type: "spring", stiffness: 320, damping: 32 }}
+      className="fixed bottom-4 left-4 top-4 z-50 hidden flex-col overflow-hidden rounded-[28px] border border-white/10 bg-panel/95 p-3 shadow-2xl shadow-black/50 backdrop-blur-xl lg:flex"
+    >
+      <a
+        href="#inicio"
+        aria-label={`${profile.name} - ir al inicio`}
+        className="flex h-12 items-center gap-3 rounded-2xl"
       >
-        <a
-          href="#inicio"
-          className="flex items-center gap-3"
-          aria-label={`${profile.name} - ir al inicio`}
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-electric to-violet font-display text-lg tracking-wide text-white shadow-lg shadow-electric/40">
+          {profile.initials}
+        </span>
+        <span
+          className={`whitespace-nowrap font-display text-lg uppercase tracking-wide text-fg transition-opacity duration-200 ${
+            expanded ? "opacity-100 delay-100" : "opacity-0"
+          }`}
         >
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-sky-500 to-blue-700 font-heading text-sm font-bold text-white shadow-md shadow-blue-500/30">
-            {profile.initials}
-          </span>
-          <span className="hidden font-heading text-lg font-bold text-ink sm:block">
-            {profile.name}
-          </span>
-        </a>
+          {profile.shortName}
+        </span>
+      </a>
 
-        <ul className="hidden items-center gap-1 lg:flex">
-          {navLinks.map(({ id, label }) => (
+      <ul className="my-auto flex flex-col gap-2 rounded-3xl bg-white/5 p-0 py-2">
+        {navLinks.map(({ id, label }) => {
+          const Icon = icons[id];
+          const isActive = active === id;
+          return (
             <li key={id}>
               <a
                 href={`#${id}`}
-                aria-current={active === id ? "page" : undefined}
-                className="relative rounded-xl px-4 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-blue-700 aria-[current=page]:text-blue-700"
+                aria-current={isActive ? "page" : undefined}
+                title={label}
+                className="group relative flex h-12 items-center gap-3 rounded-2xl"
               >
-                {active === id && (
+                {isActive && (
                   <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-0 -z-10 rounded-xl bg-sky-100/80"
+                    layoutId="rail-active"
+                    className="absolute left-0 top-0 h-12 w-12 rounded-2xl bg-gradient-to-br from-electric to-violet shadow-lg shadow-electric/50"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
-                {label}
+                <span
+                  className={`relative grid h-12 w-12 shrink-0 place-items-center transition-colors ${
+                    isActive ? "text-white" : "text-muted group-hover:text-white"
+                  }`}
+                >
+                  <Icon size={22} aria-hidden />
+                </span>
+                <span
+                  className={`whitespace-nowrap text-sm font-bold transition-opacity duration-200 ${
+                    isActive ? "text-white" : "text-muted group-hover:text-white"
+                  } ${expanded ? "opacity-100 delay-100" : "opacity-0"}`}
+                >
+                  {label}
+                </span>
               </a>
             </li>
-          ))}
-        </ul>
+          );
+        })}
+      </ul>
 
-        <div className="flex items-center gap-2">
-          <a
-            href={profile.cvUrl}
-            download
-            className="hidden items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-sky-500 px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-blue-500/25 transition-transform hover:-translate-y-0.5 hover:shadow-lg sm:inline-flex"
-          >
-            <Download size={16} aria-hidden /> CV
-          </a>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="menu-movil"
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}
-            className="grid h-10 w-10 place-items-center rounded-xl bg-sky-100/80 text-blue-700 transition-colors hover:bg-sky-200 lg:hidden"
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-      </nav>
+      <a
+        href={profile.cvUrl}
+        download
+        aria-label="Descargar CV"
+        className="flex h-12 items-center gap-3 rounded-2xl bg-white text-black shadow-lg shadow-electric/30 transition-shadow hover:shadow-electric/60"
+      >
+        <span className="grid h-12 w-12 shrink-0 place-items-center">
+          <Download size={20} aria-hidden />
+        </span>
+        <span
+          className={`whitespace-nowrap text-sm font-bold transition-opacity duration-200 ${
+            expanded ? "opacity-100 delay-100" : "opacity-0"
+          }`}
+        >
+          Descargar CV
+        </span>
+      </a>
+    </motion.nav>
+  );
+}
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id="menu-movil"
-            initial={{ opacity: 0, y: -12, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, scale: 0.98 }}
-            transition={{ duration: 0.2 }}
-            className="mx-auto mt-2 max-w-6xl rounded-2xl border border-sky-100 bg-white/95 p-3 shadow-xl shadow-sky-900/10 backdrop-blur-xl lg:hidden"
-          >
-            <ul className="flex flex-col gap-1">
-              {navLinks.map(({ id, label }, i) => (
-                <motion.li
-                  key={id}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.04 }}
-                >
-                  <a
-                    href={`#${id}`}
-                    onClick={() => setOpen(false)}
-                    aria-current={active === id ? "page" : undefined}
-                    className="block rounded-xl px-4 py-3 font-semibold text-ink-soft transition-colors hover:bg-sky-50 aria-[current=page]:bg-sky-100 aria-[current=page]:text-blue-700"
-                  >
-                    {label}
-                  </a>
-                </motion.li>
-              ))}
-              <li className="pt-1">
-                <a
-                  href={profile.cvUrl}
-                  download
-                  className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-sky-500 px-4 py-3 font-bold text-white"
-                >
-                  <Download size={18} aria-hidden /> Descargar CV
-                </a>
-              </li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+/** Móvil: barra inferior con círculo flotante sobre la sección activa. */
+function BottomBar({ active }: { active: string }) {
+  const index = Math.max(0, navLinks.findIndex((l) => l.id === active));
+  const count = navLinks.length;
+  const x = `${((index + 0.5) / count) * 100}%`;
+
+  return (
+    <nav
+      aria-label="Navegación principal"
+      className="fixed inset-x-3 bottom-3 z-50 h-16 drop-shadow-[0_10px_24px_rgba(0,0,0,0.6)] lg:hidden"
+    >
+      <div
+        aria-hidden
+        className="bottom-bar-bg absolute inset-0 rounded-3xl border border-white/10 bg-panel"
+        style={{ "--notch-x": x } as React.CSSProperties}
+      />
+      <ul
+        className="relative grid h-full"
+        style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
+      >
+        {navLinks.map(({ id, label }) => {
+          const Icon = icons[id];
+          const isActive = active === id;
+          return (
+            <li key={id} className="relative">
+              <a
+                href={`#${id}`}
+                aria-label={label}
+                aria-current={isActive ? "page" : undefined}
+                className="flex h-full flex-col items-center justify-center"
+              >
+                {isActive ? (
+                  <>
+                    <motion.span
+                      layoutId="bar-active"
+                      transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                      className="absolute left-1/2 top-[-20px] grid h-[52px] w-[52px] -translate-x-1/2 place-items-center rounded-full bg-gradient-to-br from-electric to-violet text-white shadow-lg shadow-electric/50"
+                    >
+                      <Icon size={22} aria-hidden />
+                    </motion.span>
+                    <AnimatePresence>
+                      <motion.span
+                        key={id}
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="absolute bottom-2 text-[11px] font-bold text-bolt"
+                      >
+                        {label}
+                      </motion.span>
+                    </AnimatePresence>
+                  </>
+                ) : (
+                  <Icon size={22} className="text-muted" aria-hidden />
+                )}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
+
+export default function Navbar() {
+  const active = useActiveSection();
+  return (
+    <>
+      <SideRail active={active} />
+      <BottomBar active={active} />
+    </>
   );
 }

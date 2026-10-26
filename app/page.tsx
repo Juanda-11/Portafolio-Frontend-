@@ -1,22 +1,27 @@
+import About from "@/components/About";
+import Contact from "@/components/Contact";
+import Experience from "@/components/Experience";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
-import { navLinks } from "@/lib/data";
+import Projects from "@/components/Projects";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
-        {/* Secciones provisionales: se reemplazan una a una en las siguientes etapas */}
-        {navLinks.map(({ id, label }) => (
-          <section
-            key={id}
-            id={id}
-            className="grid min-h-screen place-items-center px-6"
-          >
-            <h2 className="font-heading text-4xl font-bold text-ink">{label}</h2>
-          </section>
-        ))}
+      <main className="lg:pl-24">
+        <Hero />
+        <About />
+        <Projects />
+        {/* Provisional: se reemplaza por la sección de testimonios cuando estén listos */}
+        <section id="testimonios" className="grid min-h-[50vh] place-items-center px-6">
+          <h2 className="font-display text-5xl uppercase text-fg">Testimonios</h2>
+        </section>
+        <Experience />
+        <Contact />
       </main>
+      <Footer />
     </>
   );
 }
