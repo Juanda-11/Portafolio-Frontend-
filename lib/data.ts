@@ -1,41 +1,68 @@
+import type { Localized, Text } from "@/lib/i18n";
+
 export type NavLink = {
   id: string;
-  label: string;
+  label: Localized;
 };
 
 export const profile = {
   initials: "JJ",
   name: "Juan David Jurado Paz",
   shortName: "Juan David",
-  role: "Estudiante de Ingeniería de Software",
-  tagline:
-    "Estudiante de Ingeniería de Software con conocimientos en Java, Python, TypeScript, React Native y Expo, interesado en el desarrollo frontend, diseño UI/UX, estructuras de datos y patrones de diseño de software.",
-  university: "Universidad Cooperativa de Colombia · Campus Pasto",
-  semester: "4.º semestre",
+  role: {
+    es: "Estudiante de Ingeniería de Software",
+    en: "Software Engineering student",
+  } satisfies Localized,
+  tagline: {
+    es: "Estudiante de Ingeniería de Software con conocimientos en Java, Python, TypeScript, React Native y Expo, interesado en el desarrollo frontend, diseño UI/UX, estructuras de datos y patrones de diseño de software.",
+    en: "Software Engineering student with knowledge of Java, Python, TypeScript, React Native and Expo, interested in frontend development, UI/UX design, data structures and software design patterns.",
+  } satisfies Localized,
+  university: {
+    es: "Universidad Cooperativa de Colombia · Campus Pasto",
+    en: "Universidad Cooperativa de Colombia · Pasto Campus",
+  } satisfies Localized,
   emailInstitutional: "juand.jurado@campusucc.edu.co",
   emailPersonal: "juandaju448@gmail.com",
   github: "https://github.com/Juanda-11",
   linkedin: "https://www.linkedin.com/in/juan-david-jurado-paz-4900a7447",
-  cvUrl: "/cv.pdf",
+  cvUrl: { es: "/cv.pdf", en: "/cv-en.pdf" } satisfies Localized,
   photo: "/yo.jpg" as string | undefined,
 };
 
-export const about = [
-  "Soy estudiante de cuarto semestre de Ingeniería de Software en la Universidad Cooperativa de Colombia, campus Pasto. Me interesa el desarrollo de aplicaciones móviles y web, el diseño de interfaces modernas y la creación de soluciones tecnológicas que respondan a necesidades reales. He trabajado con lenguajes como Java, Python y TypeScript, además de tecnologías y frameworks como React Native y Expo, fortaleciendo mis conocimientos en programación, estructuras de datos, patrones de diseño y desarrollo de software.",
-  "Me considero una persona creativa, curiosa y comprometida con mi aprendizaje, con iniciativa para proponer ideas y convertirlas en proyectos funcionales. Me gusta explorar nuevas tecnologías, mejorar la experiencia de usuario mediante interfaces intuitivas y trabajar en proyectos que integren innovación y utilidad, como aplicaciones orientadas a la agricultura inteligente y al impacto social. Mi objetivo es continuar fortaleciendo mis habilidades técnicas y crecer profesionalmente como desarrollador de software, participando en proyectos que aporten valor a las personas y a la sociedad.",
+export const about: Localized[] = [
+  {
+    es: "Soy estudiante de cuarto semestre de Ingeniería de Software en la Universidad Cooperativa de Colombia, campus Pasto. Me interesa el desarrollo de aplicaciones móviles y web, el diseño de interfaces modernas y la creación de soluciones tecnológicas que respondan a necesidades reales. He trabajado con lenguajes como Java, Python y TypeScript, además de tecnologías y frameworks como React Native y Expo, fortaleciendo mis conocimientos en programación, estructuras de datos, patrones de diseño y desarrollo de software.",
+    en: "I am a fourth-semester Software Engineering student at the Universidad Cooperativa de Colombia, Pasto campus. I am interested in mobile and web application development, modern interface design and building technology solutions that answer real needs. I have worked with languages such as Java, Python and TypeScript, as well as technologies and frameworks like React Native and Expo, strengthening my knowledge of programming, data structures, design patterns and software development.",
+  },
+  {
+    es: "Me considero una persona creativa, curiosa y comprometida con mi aprendizaje, con iniciativa para proponer ideas y convertirlas en proyectos funcionales. Me gusta explorar nuevas tecnologías, mejorar la experiencia de usuario mediante interfaces intuitivas y trabajar en proyectos que integren innovación y utilidad, como aplicaciones orientadas a la agricultura inteligente y al impacto social. Mi objetivo es continuar fortaleciendo mis habilidades técnicas y crecer profesionalmente como desarrollador de software, participando en proyectos que aporten valor a las personas y a la sociedad.",
+    en: "I consider myself a creative, curious person committed to my learning, with the initiative to propose ideas and turn them into working projects. I enjoy exploring new technologies, improving user experience through intuitive interfaces and working on projects that combine innovation and usefulness, such as applications aimed at smart farming and social impact. My goal is to keep strengthening my technical skills and grow professionally as a software developer, taking part in projects that bring value to people and society.",
+  },
 ];
 
-export const quickFacts = [
-  { label: "Ubicación", value: "Pasto, Colombia" },
-  { label: "Semestre", value: "4.º semestre" },
-  { label: "Carrera", value: "Ingeniería de Software" },
-  { label: "Universidad", value: "UCC · Campus Pasto" },
+export const quickFacts: { label: Localized; value: Text }[] = [
+  { label: { es: "Ubicación", en: "Location" }, value: "Pasto, Colombia" },
+  { label: { es: "Semestre", en: "Semester" }, value: { es: "4.º semestre", en: "4th semester" } },
+  { label: { es: "Carrera", en: "Degree" }, value: { es: "Ingeniería de Software", en: "Software Engineering" } },
+  { label: { es: "Universidad", en: "University" }, value: { es: "UCC · Campus Pasto", en: "UCC · Pasto Campus" } },
 ];
 
-export const skillGroups = [
-  { title: "Frameworks", items: ["Next.js", "React", "React Native", "Expo", "Tailwind CSS", "Express"] },
-  { title: "Lenguajes", items: ["TypeScript", "Java", "Python"] },
-  { title: "Intereses", items: ["Diseño UI/UX", "Estructuras de datos", "Patrones de diseño", "Agricultura inteligente", "Impacto social"] },
+export const skillGroups: { title: Localized; items: Text[] }[] = [
+  {
+    title: { es: "Frameworks", en: "Frameworks" },
+    items: ["Next.js", "React", "React Native", "Expo", "Tailwind CSS", "Express"],
+  },
+  { title: { es: "Lenguajes", en: "Languages" }, items: ["TypeScript", "Java", "Python"] },
+  {
+    title: { es: "Intereses", en: "Interests" },
+    items: [
+      { es: "Diseño UI/UX", en: "UI/UX design" },
+      { es: "Estructuras de datos", en: "Data structures" },
+      { es: "Patrones de diseño", en: "Design patterns" },
+      { es: "Agricultura inteligente", en: "Smart farming" },
+      { es: "Impacto social", en: "Social impact" },
+    ],
+  },
 ];
 
 /** Frameworks y tecnologías que se muestran en la cinta del Hero. */
@@ -53,10 +80,10 @@ export const stack = [
 ];
 
 export const navLinks: NavLink[] = [
-  { id: "inicio", label: "Inicio" },
-  { id: "sobre-mi", label: "Sobre mí" },
-  { id: "proyectos", label: "Proyectos" },
-  { id: "testimonios", label: "Testimonios" },
-  { id: "experiencia", label: "Experiencia" },
-  { id: "contacto", label: "Contacto" },
+  { id: "inicio", label: { es: "Inicio", en: "Home" } },
+  { id: "sobre-mi", label: { es: "Sobre mí", en: "About" } },
+  { id: "proyectos", label: { es: "Proyectos", en: "Projects" } },
+  { id: "testimonios", label: { es: "Testimonios", en: "Testimonials" } },
+  { id: "experiencia", label: { es: "Experiencia", en: "Experience" } },
+  { id: "contacto", label: { es: "Contacto", en: "Contact" } },
 ];
