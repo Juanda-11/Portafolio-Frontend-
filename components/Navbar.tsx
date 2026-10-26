@@ -14,6 +14,7 @@ import {
   User,
   Workflow,
 } from "lucide-react";
+import Logo from "@/components/Logo";
 import { navLinks, profile } from "@/lib/data";
 import { useLocale, useT, useTheme } from "@/lib/preferences";
 
@@ -71,15 +72,17 @@ function SideRail({ active }: { active: string }) {
         aria-label={profile.name}
         className="flex h-12 items-center gap-3 rounded-2xl"
       >
-        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-electric to-violet font-display text-lg tracking-wide text-white shadow-lg shadow-electric/40">
-          {profile.initials}
-        </span>
+        <Logo
+          size={48}
+          className="shrink-0 rounded-2xl shadow-lg shadow-electric/40 transition-transform duration-300 hover:rotate-[-6deg] hover:scale-105"
+        />
         <span
-          className={`whitespace-nowrap font-display text-lg uppercase tracking-wide text-fg transition-opacity duration-200 ${
+          className={`flex flex-col whitespace-nowrap leading-none transition-opacity duration-200 ${
             expanded ? "opacity-100 delay-100" : "opacity-0"
           }`}
         >
-          {profile.shortName}
+          <span className="font-display text-xl uppercase tracking-wide text-fg">{profile.shortName}</span>
+          <span className="mt-1 font-serif text-xs font-semibold uppercase tracking-[0.3em] text-bolt">Jurado Paz</span>
         </span>
       </a>
 
