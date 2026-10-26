@@ -44,7 +44,7 @@ export default function Lightning({ className = "" }: { className?: string }) {
             <motion.path
               d={d}
               fill="none"
-              stroke="#eaf5ff"
+              style={{ stroke: "var(--bolt-core)" }}
               strokeWidth={i === 0 ? 4 : 2.5}
               strokeLinejoin="round"
               strokeLinecap="round"

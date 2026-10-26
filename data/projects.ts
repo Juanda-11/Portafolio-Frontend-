@@ -1,9 +1,11 @@
+import type { Localized, Text } from "@/lib/i18n";
+
 export type Platform = "Web" | "Móvil" | "Escritorio" | "Smartwatch";
 
 export type Project = {
   title: string;
-  description: string;
-  tags: string[];
+  description: Localized;
+  tags: Text[];
   platform: Platform;
   /** Repositorio del frontend (o del proyecto, si no está dividido). */
   github: string;
@@ -26,8 +28,11 @@ export const projects: Project[] = [
   {
     title: "FoodLink",
     description:
-      "App para reducir el desperdicio de alimentos: conecta a donantes con quienes los necesitan. Analiza fotos con IA, muestra un mapa real y cierra cada entrega con código y QR.",
-    tags: ["React Native", "Expo", "Serverless", "Redis", "IA"],
+      {
+      es: "App para reducir el desperdicio de alimentos: conecta a donantes con quienes los necesitan. Analiza fotos con IA, muestra un mapa real y cierra cada entrega con código y QR.",
+      en: "App to reduce food waste: it connects donors with the people who need food. It analyzes photos with AI, shows a real map and closes every delivery with a code and QR.",
+    },
+    tags: ["React Native", "Expo", "Serverless", "Redis", { es: "IA", en: "AI" }],
     platform: "Móvil",
     github: "https://github.com/Juanda-11/Proyectos-de-interfaces",
     githubBackend: "https://github.com/Juanda-11/Proyectos-de-interfaces-MB",
@@ -39,8 +44,11 @@ export const projects: Project[] = [
   {
     title: "HydroGraph AI",
     description:
-      "Editor visual para diseñar, simular y auditar redes de suministro de agua. Calcula presiones y pérdidas, y un copiloto de IA diseña y optimiza la red. Exporta a EPANET.",
-    tags: ["React", "Electron", "Node.js", "Express", "IA"],
+      {
+      es: "Editor visual para diseñar, simular y auditar redes de suministro de agua. Calcula presiones y pérdidas, y un copiloto de IA diseña y optimiza la red. Exporta a EPANET.",
+      en: "Visual editor to design, simulate and audit water supply networks. It calculates pressures and losses, and an AI copilot designs and optimizes the network. Exports to EPANET.",
+    },
+    tags: ["React", "Electron", "Node.js", "Express", { es: "IA", en: "AI" }],
     platform: "Escritorio",
     github: "https://github.com/Juanda-11/Proyectos-de-interfaces-E",
     githubBackend: "https://github.com/Juanda-11/Proyectos-de-interfaces-EB",
@@ -50,8 +58,11 @@ export const projects: Project[] = [
   {
     title: "WorkerWatch",
     description:
-      "App solo para smartwatch pensada para trabajadores de planta: muestra el turno, avisa con alertas y vibración cuando falla un equipo y un asistente de IA guía la reparación por voz.",
-    tags: ["React Native", "Expo", "Wear OS", "Node.js", "IA"],
+      {
+      es: "App solo para smartwatch pensada para trabajadores de planta: muestra el turno, avisa con alertas y vibración cuando falla un equipo y un asistente de IA guía la reparación por voz.",
+      en: "Smartwatch-only app for plant workers: it shows the shift, warns with alerts and vibration when equipment fails, and an AI assistant guides the repair by voice.",
+    },
+    tags: ["React Native", "Expo", "Wear OS", "Node.js", { es: "IA", en: "AI" }],
     platform: "Smartwatch",
     github: "https://github.com/Juanda-11/Proyectos-de-interfaces-S",
     githubBackend: "https://github.com/Juanda-11/Proyectos-de-interfaces-SB",
@@ -63,8 +74,11 @@ export const projects: Project[] = [
   {
     title: "Reproductor de música",
     description:
-      "Reproductor cuya lista de reproducción es una lista doblemente enlazada hecha desde cero, sin arreglos. Arrastra canciones para reordenarlas, busca con iTunes o Spotify y sube tus propios archivos.",
-    tags: ["TypeScript", "Vite", "Estructuras de datos", "Spotify API"],
+      {
+      es: "Reproductor cuya lista de reproducción es una lista doblemente enlazada hecha desde cero, sin arreglos. Arrastra canciones para reordenarlas, busca con iTunes o Spotify y sube tus propios archivos.",
+      en: "Music player whose playlist is a doubly linked list built from scratch, without arrays. Drag songs to reorder them, search with iTunes or Spotify and upload your own files.",
+    },
+    tags: ["TypeScript", "Vite", { es: "Estructuras de datos", en: "Data structures" }, "Spotify API"],
     platform: "Web",
     github: "https://github.com/Juanda-11/Music-player---double-list",
     demo: "https://music-player-double-list.vercel.app/",

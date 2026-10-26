@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowDownToLine, ArrowUpRight, Zap } from "lucide-react";
 import Lightning from "@/components/Lightning";
 import { profile, stack } from "@/lib/data";
+import { useT } from "@/lib/preferences";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -16,6 +17,7 @@ const fadeUp = {
 };
 
 function PhotoCard() {
+  const { t } = useT();
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const rotateY = useSpring(useTransform(mx, [-0.5, 0.5], [-9, 9]), { stiffness: 120, damping: 18 });
@@ -47,7 +49,7 @@ function PhotoCard() {
             {profile.photo ? (
               <Image
                 src={profile.photo}
-                alt={`Foto de ${profile.shortName}`}
+                alt={t("hero.photoAlt")}
                 fill
                 sizes="(min-width: 640px) 24rem, 90vw"
                 className="object-cover"
@@ -55,17 +57,17 @@ function PhotoCard() {
                 priority
               />
             ) : (
-              <div className="grid h-full place-items-center font-display text-9xl text-white/90">
+              <div className="grid h-full place-items-center font-display text-9xl text-fg/90">
                 {profile.initials}
               </div>
             )}
-            <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-electric/10" />
+            <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-electric/10" />
             <div
               aria-hidden
               className="absolute -left-10 -top-10 h-56 w-56 rounded-full bg-[conic-gradient(from_90deg,#ff3b6b,#ffd23f,#3bff9c,#3bb7ff,#9b5cff,#ff3b6b)] opacity-40 mix-blend-screen blur-2xl"
             />
-            <p className="absolute bottom-4 left-5 font-mono text-xs uppercase tracking-[0.2em] text-white/80">
-              ● UCC · Pasto
+            <p className="absolute bottom-4 left-5 font-mono text-xs uppercase tracking-[0.2em] text-fg/80">
+              ● {t("hero.caption")}
             </p>
           </div>
         </div>
@@ -74,17 +76,17 @@ function PhotoCard() {
           animate={{ rotate: [-8, -4, -8] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           style={{ translateZ: 60 }}
-          className="absolute -left-4 top-8 rounded-lg bg-white px-3 py-1.5 font-display text-lg uppercase tracking-wide text-black shadow-xl sm:-left-10"
+          className="absolute -left-4 top-8 rounded-lg bg-cta px-3 py-1.5 font-display text-lg uppercase tracking-wide text-cta-fg shadow-xl sm:-left-10"
         >
-          4.º semestre
+          {t("hero.sticker.semester")}
         </motion.span>
         <motion.span
           animate={{ rotate: [6, 10, 6] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           style={{ translateZ: 60 }}
-          className="absolute -right-3 bottom-16 rounded-lg border border-white/20 bg-night/80 px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-xl backdrop-blur sm:-right-8"
+          className="absolute -right-3 bottom-16 rounded-lg border border-fg/20 bg-panel/90 px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-fg shadow-xl backdrop-blur sm:-right-8"
         >
-          Ing. de Software
+          {t("hero.sticker.career")}
         </motion.span>
         <motion.span
           aria-hidden
@@ -121,13 +123,14 @@ function Tape() {
 }
 
 export default function Hero() {
+  const { t, l } = useT();
   return (
     <section id="inicio" className="relative flex min-h-screen flex-col justify-center overflow-hidden">
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-6 left-0 select-none whitespace-nowrap font-display text-[22vw] uppercase leading-none text-white/[0.03]"
+        className="pointer-events-none absolute -top-6 left-0 select-none whitespace-nowrap font-display text-[22vw] uppercase leading-none text-fg/[0.04]"
       >
-        Portafolio
+        {l({ es: "Portafolio", en: "Portfolio" })}
       </div>
 
       <Lightning className="absolute right-[34%] top-0 hidden h-[88%] w-56 md:block" />
@@ -141,7 +144,7 @@ export default function Hero() {
             animate="show"
             className="font-serif text-sm font-semibold uppercase tracking-[0.4em] text-bolt sm:text-base"
           >
-            Portafolio · Diseño de Interfaces
+            {t("hero.eyebrow")}
           </motion.p>
 
           <motion.h1
@@ -162,9 +165,9 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="mt-5 inline-block -rotate-1 rounded-md bg-white/10 px-3 py-1 font-mono text-sm font-bold uppercase tracking-wider text-fg backdrop-blur"
+            className="mt-5 inline-block -rotate-1 rounded-md bg-fg/10 px-3 py-1 font-mono text-sm font-bold uppercase tracking-wider text-fg backdrop-blur"
           >
-            {profile.role}
+            {l(profile.role)}
           </motion.p>
 
           <motion.p
@@ -174,11 +177,11 @@ export default function Hero() {
             animate="show"
             className="mt-5 flex items-center justify-center gap-3 md:justify-start"
           >
-            <span className="neon rounded-full border-2 border-white px-4 py-0.5 font-display text-lg uppercase tracking-widest">
-              Open
+            <span className="neon rounded-full border-2 border-fg px-4 py-0.5 font-display text-lg uppercase tracking-widest">
+              {t("hero.open")}
             </span>
             <span className="font-serif text-lg font-semibold uppercase tracking-[0.2em] text-fg/80">
-              a nuevos proyectos
+              {t("hero.openFor")}
             </span>
           </motion.p>
 
@@ -189,7 +192,7 @@ export default function Hero() {
             animate="show"
             className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg md:mx-0"
           >
-            {profile.tagline}
+            {l(profile.tagline)}
           </motion.p>
 
           <motion.div
@@ -200,18 +203,18 @@ export default function Hero() {
             className="mt-9 flex flex-wrap justify-center gap-4 md:justify-start"
           >
             <a
-              href={profile.cvUrl}
+              href={l(profile.cvUrl)}
               download
-              className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-display text-lg uppercase tracking-wide text-black shadow-[0_0_30px_rgba(124,200,255,0.45)] transition hover:-translate-y-1 hover:shadow-[0_0_44px_rgba(124,200,255,0.8)]"
+              className="group inline-flex items-center gap-2 rounded-full bg-cta px-7 py-4 font-display text-lg uppercase tracking-wide text-cta-fg shadow-[0_0_30px_rgba(124,200,255,0.45)] transition hover:-translate-y-1 hover:shadow-[0_0_44px_rgba(124,200,255,0.8)]"
             >
               <ArrowDownToLine size={20} aria-hidden className="transition-transform group-hover:translate-y-0.5" />
-              Descargar CV
+              {t("hero.cv")}
             </a>
             <a
               href="#proyectos"
-              className="group inline-flex items-center gap-2 rounded-full border-2 border-white/25 px-7 py-4 font-display text-lg uppercase tracking-wide text-fg transition hover:-translate-y-1 hover:border-electric hover:bg-electric/15"
+              className="group inline-flex items-center gap-2 rounded-full border-2 border-fg/25 px-7 py-4 font-display text-lg uppercase tracking-wide text-fg transition hover:-translate-y-1 hover:border-electric hover:bg-electric/15"
             >
-              Ver proyectos
+              {t("hero.projects")}
               <ArrowUpRight size={20} aria-hidden className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </motion.div>

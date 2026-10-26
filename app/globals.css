@@ -9,6 +9,31 @@
   --violet: #7c3aed;
   --cyan: #38bdf8;
   --bolt: #7cc8ff;
+  --cta: #ffffff;
+  --cta-fg: #05070f;
+  --bolt-core: #eaf5ff;
+  --glow-a: rgba(59, 109, 255, 0.35);
+  --glow-b: rgba(124, 58, 237, 0.28);
+  --glow-c: rgba(124, 200, 255, 0.12);
+  --shadow: rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme="light"] {
+  --night: #f3f6ff;
+  --panel: #ffffff;
+  --fg: #0b1224;
+  --muted: #4a5878;
+  --electric: #2f5bff;
+  --violet: #6d28d9;
+  --cyan: #0284c7;
+  --bolt: #1d4ed8;
+  --cta: #0b1224;
+  --cta-fg: #ffffff;
+  --bolt-core: #1d4ed8;
+  --glow-a: rgba(59, 109, 255, 0.22);
+  --glow-b: rgba(124, 58, 237, 0.14);
+  --glow-c: rgba(59, 130, 246, 0.1);
+  --shadow: rgba(30, 58, 138, 0.18);
 }
 
 @theme inline {
@@ -20,6 +45,8 @@
   --color-violet: var(--violet);
   --color-cyan: var(--cyan);
   --color-bolt: var(--bolt);
+  --color-cta: var(--cta);
+  --color-cta-fg: var(--cta-fg);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
   --font-mono: var(--font-code);
@@ -28,7 +55,21 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+:root[data-theme="dark"] {
   color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+body,
+nav,
+article,
+footer {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 section[id] {
@@ -42,9 +83,9 @@ section[id] {
 
 body {
   background:
-    radial-gradient(55rem 38rem at 8% -8%, rgba(59, 109, 255, 0.35), transparent 60%),
-    radial-gradient(48rem 34rem at 100% 25%, rgba(124, 58, 237, 0.28), transparent 60%),
-    radial-gradient(40rem 26rem at 40% 110%, rgba(124, 200, 255, 0.12), transparent 60%),
+    radial-gradient(55rem 38rem at 8% -8%, var(--glow-a), transparent 60%),
+    radial-gradient(48rem 34rem at 100% 25%, var(--glow-b), transparent 60%),
+    radial-gradient(40rem 26rem at 40% 110%, var(--glow-c), transparent 60%),
     var(--night);
   background-attachment: fixed;
   color: var(--fg);
@@ -90,6 +131,12 @@ body::after {
 }
 
 /* Cartel de neón */
+:root[data-theme="light"] .neon {
+  color: var(--bolt);
+  text-shadow: 0 0 8px rgba(59, 139, 255, 0.45);
+  box-shadow: 0 0 10px rgba(59, 139, 255, 0.35), inset 0 0 8px rgba(59, 139, 255, 0.18);
+}
+
 .neon {
   color: #fff;
   text-shadow: 0 0 4px #fff, 0 0 14px #3b8bff, 0 0 34px #3b8bff;
@@ -116,7 +163,7 @@ body::after {
 }
 
 .dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.28) 1.4px, transparent 1.6px);
+  background-image: radial-gradient(color-mix(in srgb, var(--fg) 28%, transparent) 1.4px, transparent 1.6px);
   background-size: 14px 14px;
 }
 

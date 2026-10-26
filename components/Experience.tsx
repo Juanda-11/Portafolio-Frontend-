@@ -4,27 +4,28 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Briefcase, GraduationCap, Zap } from "lucide-react";
 import { experience, type ExperienceItem, type ExperienceType } from "@/data/experience";
+import { useT } from "@/lib/preferences";
 
 type Filter = "todo" | ExperienceType;
 
-const filters: { id: Filter; label: string }[] = [
-  { id: "todo", label: "Todo" },
-  { id: "academica", label: "Académica" },
-  { id: "laboral", label: "Laboral" },
+const filters: { id: Filter; key: "exp.all" | "exp.academica" | "exp.laboral" }[] = [
+  { id: "todo", key: "exp.all" },
+  { id: "academica", key: "exp.academica" },
+  { id: "laboral", key: "exp.laboral" },
 ];
 
 const style = {
   academica: {
-    label: "Académica",
+    key: "exp.academica",
     icon: GraduationCap,
     badge: "bg-gradient-to-r from-electric to-violet text-white",
     dot: "from-electric to-violet shadow-electric/60",
     hover: "hover:border-electric/60 hover:shadow-[0_20px_60px_rgba(59,109,255,0.25)]",
   },
   laboral: {
-    label: "Laboral",
+    key: "exp.laboral",
     icon: Briefcase,
-    badge: "bg-white text-black",
+    badge: "bg-cta text-cta-fg",
     dot: "from-bolt to-cyan shadow-bolt/60",
     hover: "hover:border-bolt/60 hover:shadow-[0_20px_60px_rgba(124,200,255,0.22)]",
   },
@@ -32,6 +33,7 @@ const style = {
 
 function Card({ item, index }: { item: ExperienceItem; index: number }) {
   const s = style[item.type];
+  const { t, l } = useT();
   const Icon = s.icon;
   const right = item.type === "academica";
 
@@ -53,16 +55,16 @@ function Card({ item, index }: { item: ExperienceItem; index: number }) {
       </span>
 
       <article
-        className={`rounded-[1.5rem] border border-white/10 bg-panel/70 p-6 shadow-xl shadow-black/40 backdrop-blur transition duration-300 hover:-translate-y-1 md:row-start-1 ${s.hover} ${
+        className={`rounded-[1.5rem] border border-fg/10 bg-panel/70 p-6 shadow-xl shadow-black/40 backdrop-blur transition duration-300 hover:-translate-y-1 md:row-start-1 ${s.hover} ${
           right ? "md:col-start-1 md:text-right" : "md:col-start-3"
         }`}
       >
         <div className={`flex flex-wrap items-center gap-2 ${right ? "md:justify-end" : ""}`}>
           <span className={`rounded-md px-2.5 py-1 font-display text-sm uppercase tracking-wide ${s.badge}`}>
-            {s.label}
+            {t(s.key)}
           </span>
-          <span className="rounded-md border border-white/15 px-2.5 py-1 font-mono text-xs font-bold uppercase tracking-wider text-fg">
-            {item.date}
+          <span className="rounded-md border border-fg/15 px-2.5 py-1 font-mono text-xs font-bold uppercase tracking-wider text-fg">
+            {l(item.date)}
           </span>
           {item.current && (
             <span className="flex items-center gap-1.5 font-serif text-xs font-bold uppercase tracking-[0.2em] text-bolt">
@@ -70,22 +72,22 @@ function Card({ item, index }: { item: ExperienceItem; index: number }) {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-bolt opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-bolt" />
               </span>
-              Actual
+              {t("exp.current")}
             </span>
           )}
         </div>
 
         <h3 className="mt-4 font-display text-2xl uppercase leading-tight tracking-wide text-fg sm:text-3xl">
-          {item.title}
+          {l(item.title)}
         </h3>
-        <p className="mt-1 font-serif text-base font-semibold uppercase tracking-[0.18em] text-bolt">{item.place}</p>
-        <p className="mt-3 leading-relaxed text-muted">{item.description}</p>
+        <p className="mt-1 font-serif text-base font-semibold uppercase tracking-[0.18em] text-bolt">{l(item.place)}</p>
+        <p className="mt-3 leading-relaxed text-muted">{l(item.description)}</p>
 
         {item.highlights && (
           <ul className={`mt-4 flex flex-wrap gap-2 ${right ? "md:justify-end" : ""}`}>
             {item.highlights.map((h) => (
-              <li key={h} className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-bold text-fg">
-                {h}
+              <li key={l(h)} className="rounded-full border border-fg/15 bg-fg/5 px-3 py-1 text-xs font-bold text-fg">
+                {l(h)}
               </li>
             ))}
           </ul>
@@ -97,6 +99,7 @@ function Card({ item, index }: { item: ExperienceItem; index: number }) {
 
 export default function Experience() {
   const [filter, setFilter] = useState<Filter>("todo");
+  const { t, l } = useT();
   const ref = useRef<HTMLOListElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 65%", "end 55%"] });
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24 });
@@ -112,7 +115,7 @@ export default function Experience() {
         viewport={{ once: true }}
         className="font-serif text-sm font-semibold uppercase tracking-[0.4em] text-bolt sm:text-base"
       >
-        03 — Experiencia académica y laboral
+        {t("exp.eyebrow")}
       </motion.p>
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
@@ -120,13 +123,13 @@ export default function Experience() {
         viewport={{ once: true }}
         className="mt-3 font-display text-6xl uppercase leading-[0.95] sm:text-7xl"
       >
-        <span className="chroma">Mi</span> <span className="text-outline">trayectoria</span>
+        <span className="chroma">{t("exp.title1")}</span> <span className="text-outline">{t("exp.title2")}</span>
       </motion.h2>
       <p className="mt-5 max-w-2xl text-lg text-muted">
-        Lo que he estudiado y dónde he trabajado, de lo más reciente a lo más antiguo.
+        {t("exp.intro")}
       </p>
 
-      <div role="tablist" aria-label="Filtrar experiencia" className="mt-8 flex flex-wrap gap-2">
+      <div role="tablist" aria-label={t("exp.filterAria")} className="mt-8 flex flex-wrap gap-2">
         {filters.map((f) => (
           <button
             key={f.id}
@@ -136,16 +139,16 @@ export default function Experience() {
             className={`rounded-full border px-5 py-2 font-display text-base uppercase tracking-wide transition ${
               filter === f.id
                 ? "border-transparent bg-gradient-to-r from-electric to-violet text-white shadow-lg shadow-electric/40"
-                : "border-white/15 text-muted hover:border-white/40 hover:text-white"
+                : "border-fg/15 text-muted hover:border-fg/40 hover:text-fg"
             }`}
           >
-            {f.label}
+            {t(f.key)}
           </button>
         ))}
       </div>
 
       <ol ref={ref} className="relative mt-14">
-        <span aria-hidden className="absolute bottom-0 left-4 top-0 w-px -translate-x-1/2 bg-white/10 md:left-1/2" />
+        <span aria-hidden className="absolute bottom-0 left-4 top-0 w-px -translate-x-1/2 bg-fg/10 md:left-1/2" />
         <motion.span
           aria-hidden
           style={{ scaleY: progress }}
@@ -154,14 +157,14 @@ export default function Experience() {
         <motion.span
           aria-hidden
           style={{ top }}
-          className="absolute left-4 z-10 -translate-x-1/2 -translate-y-1/2 text-white drop-shadow-[0_0_12px_rgba(59,139,255,1)] md:left-1/2"
+          className="absolute left-4 z-10 -translate-x-1/2 -translate-y-1/2 text-bolt drop-shadow-[0_0_12px_rgba(59,139,255,1)] md:left-1/2"
         >
           <Zap size={26} fill="currentColor" strokeWidth={0} />
         </motion.span>
 
         <AnimatePresence mode="popLayout">
           {shown.map((item, i) => (
-            <Card key={`${item.title}-${item.date}`} item={item} index={i} />
+            <Card key={`${l(item.title)}-${l(item.date)}`} item={item} index={i} />
           ))}
         </AnimatePresence>
       </ol>

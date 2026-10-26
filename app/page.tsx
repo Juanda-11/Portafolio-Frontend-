@@ -4,7 +4,9 @@ import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
+import Process from "@/components/Process";
 import Projects from "@/components/Projects";
+import TestimonialsPlaceholder from "@/components/TestimonialsPlaceholder";
 
 export default function Home() {
   return (
@@ -14,11 +16,9 @@ export default function Home() {
         <Hero />
         <About />
         <Projects />
-        {/* Provisional: se reemplaza por la sección de testimonios cuando estén listos */}
-        <section id="testimonios" className="grid min-h-[50vh] place-items-center px-6">
-          <h2 className="font-display text-5xl uppercase text-fg">Testimonios</h2>
-        </section>
+        <TestimonialsPlaceholder />
         <Experience />
+        <Process />
         <Contact />
       </main>
       <Footer />
