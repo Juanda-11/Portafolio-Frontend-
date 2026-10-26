@@ -14,7 +14,8 @@ export const profile = {
   semester: "4.º semestre",
   emailInstitutional: "juand.jurado@campusucc.edu.co",
   emailPersonal: "juandaju448@gmail.com",
-  github: "https://github.com/juanda-11",
+  github: "https://github.com/Juanda-11",
+  linkedin: "https://www.linkedin.com/in/juan-david-jurado-paz-4900a7447",
   cvUrl: "/cv.pdf",
   photo: "/yo.jpg" as string | undefined,
 };

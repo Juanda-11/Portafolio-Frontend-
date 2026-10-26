@@ -14,6 +14,6 @@ npm run dev   # http://localhost:3000
 - [x] 4. Mis proyectos (`components/Projects.tsx` + `data/projects.ts`)
 - [ ] 5. Testimonios
 - [x] 6. Experiencia académica y laboral (`components/Experience.tsx` + `data/experience.ts`)
-- [ ] 7. Contactos
-- [ ] 8. Pie de página
+- [x] 7. Contactos (`components/Contact.tsx`)
+- [x] 8. Pie de página (`components/Footer.tsx`)
 - [ ] 9. Sección adicional
