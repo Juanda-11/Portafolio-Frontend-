@@ -4,7 +4,11 @@ export type Platform = "Web" | "Móvil" | "Escritorio" | "Smartwatch";
 
 export type Project = {
   title: string;
+  /** Qué hice yo en el proyecto. */
+  role?: Localized;
   description: Localized;
+  /** Pista breve para probar el proyecto (por ejemplo, cuentas demo). */
+  hint?: Localized;
   tags: Text[];
   platform: Platform;
   /** Repositorio del frontend (o del proyecto, si no está dividido). */
@@ -13,8 +17,10 @@ export type Project = {
   githubBackend?: string;
   /** Despliegue en Vercel / demo en vivo. */
   demo?: string;
-  /** Enlace de descarga del APK. Cuando lo tengas, agrégalo y aparece el botón solo. */
+  /** Enlace de descarga del APK (Android). Si lo defines, aparece el botón solo. */
   apk?: string;
+  /** Enlace de descarga del instalador de escritorio (.exe). Si lo defines, aparece el botón solo. */
+  exe?: string;
   /** Imagen en /public/projects (recomendado .webp). */
   image: string;
   /** "cover" recorta para llenar; "contain" muestra la imagen completa (capturas verticales). */
@@ -27,22 +33,29 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "FoodLink",
+    role: { es: "Diseño y desarrollo · frontend + backend", en: "Design & development · frontend + backend" },
     description:
       {
       es: "App para reducir el desperdicio de alimentos: conecta a donantes con quienes los necesitan. Analiza fotos con IA, muestra un mapa real y cierra cada entrega con código y QR.",
       en: "App to reduce food waste: it connects donors with the people who need food. It analyzes photos with AI, shows a real map and closes every delivery with a code and QR.",
+    },
+    hint: {
+      es: "Para probarla sin registrarte, usa «Demo receptor» o «Demo donante» en la pantalla de inicio.",
+      en: "To try it without signing up, use «Receiver demo» or «Donor demo» on the home screen.",
     },
     tags: ["React Native", "Expo", "Serverless", "Redis", { es: "IA", en: "AI" }],
     platform: "Móvil",
     github: "https://github.com/Juanda-11/Proyectos-de-interfaces",
     githubBackend: "https://github.com/Juanda-11/Proyectos-de-interfaces-MB",
     demo: "https://foodlink-ashen.vercel.app/",
-    image: "/projects/foodlink.webp",
+    apk: "https://github.com/Juanda-11/Proyectos-de-interfaces/releases/download/v1.0.0/application-20d32248-bd76-44bf-a26c-ff21f181ba23.apk",
+    image: "/projects/foodlink-es.webp",
     imageFit: "cover",
     imagePosition: "50% 0%",
   },
   {
     title: "HydroGraph AI",
+    role: { es: "Diseño y desarrollo · frontend + backend", en: "Design & development · frontend + backend" },
     description:
       {
       es: "Editor visual para diseñar, simular y auditar redes de suministro de agua. Calcula presiones y pérdidas, y un copiloto de IA diseña y optimiza la red. Exporta a EPANET.",
@@ -53,10 +66,12 @@ export const projects: Project[] = [
     github: "https://github.com/Juanda-11/Proyectos-de-interfaces-E",
     githubBackend: "https://github.com/Juanda-11/Proyectos-de-interfaces-EB",
     demo: "https://hydrographia.vercel.app/",
+    exe: "https://github.com/Juanda-11/Proyectos-de-interfaces-E/releases/download/v1.0.0/HydroGraph-AI-1.0.0-win-x64.exe",
     image: "/projects/hydrograph.webp",
   },
   {
     title: "WorkerWatch",
+    role: { es: "Diseño y desarrollo · frontend + backend", en: "Design & development · frontend + backend" },
     description:
       {
       es: "App solo para smartwatch pensada para trabajadores de planta: muestra el turno, avisa con alertas y vibración cuando falla un equipo y un asistente de IA guía la reparación por voz.",
@@ -67,12 +82,14 @@ export const projects: Project[] = [
     github: "https://github.com/Juanda-11/Proyectos-de-interfaces-S",
     githubBackend: "https://github.com/Juanda-11/Proyectos-de-interfaces-SB",
     demo: "https://smartwatch-drab-gamma.vercel.app/",
+    apk: "https://github.com/Juanda-11/Proyectos-de-interfaces-S/releases/download/v1.0.0/WorkerWatch.apk.apk",
     image: "/projects/workerwatch.webp",
     imageFit: "contain",
     imageBg: "#000",
   },
   {
     title: "Reproductor de música",
+    role: { es: "Diseño y desarrollo", en: "Design & development" },
     description:
       {
       es: "Reproductor cuya lista de reproducción es una lista doblemente enlazada hecha desde cero, sin arreglos. Arrastra canciones para reordenarlas, busca con iTunes o Spotify y sube tus propios archivos.",

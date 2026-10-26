@@ -14,9 +14,10 @@ export const profile = {
     en: "Software Engineering student",
   } satisfies Localized,
   tagline: {
-    es: "Estudiante de Ingeniería de Software con conocimientos en Java, Python, TypeScript, React Native y Expo, interesado en el desarrollo frontend, diseño UI/UX, estructuras de datos y patrones de diseño de software.",
-    en: "Software Engineering student with knowledge of Java, Python, TypeScript, React Native and Expo, interested in frontend development, UI/UX design, data structures and software design patterns.",
+    es: "Diseño y desarrollo interfaces web y apps para móvil, escritorio y smartwatch.",
+    en: "I design and build web interfaces and apps for mobile, desktop and smartwatch.",
   } satisfies Localized,
+  location: "Pasto, Colombia",
   university: {
     es: "Universidad Cooperativa de Colombia · Campus Pasto",
     en: "Universidad Cooperativa de Colombia · Pasto Campus",
@@ -25,7 +26,6 @@ export const profile = {
   emailPersonal: "juandaju448@gmail.com",
   github: "https://github.com/Juanda-11",
   linkedin: "https://www.linkedin.com/in/juan-david-jurado-paz-4900a7447",
-  cvUrl: { es: "/cv.pdf", en: "/cv-en.pdf" } satisfies Localized,
   photo: "/yo.jpg" as string | undefined,
 };
 
@@ -83,7 +83,6 @@ export const navLinks: NavLink[] = [
   { id: "inicio", label: { es: "Inicio", en: "Home" } },
   { id: "sobre-mi", label: { es: "Sobre mí", en: "About" } },
   { id: "proyectos", label: { es: "Proyectos", en: "Projects" } },
-  { id: "testimonios", label: { es: "Testimonios", en: "Testimonials" } },
   { id: "experiencia", label: { es: "Experiencia", en: "Experience" } },
   { id: "proceso", label: { es: "Proceso", en: "Process" } },
   { id: "contacto", label: { es: "Contacto", en: "Contact" } },

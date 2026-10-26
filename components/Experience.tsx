@@ -63,11 +63,11 @@ function Card({ item, index }: { item: ExperienceItem; index: number }) {
           <span className={`rounded-md px-2.5 py-1 font-display text-sm uppercase tracking-wide ${s.badge}`}>
             {t(s.key)}
           </span>
-          <span className="rounded-md border border-fg/15 px-2.5 py-1 font-mono text-xs font-bold uppercase tracking-wider text-fg">
+          <span className="rounded-md border border-fg/15 px-2.5 py-1 font-mono text-[13px] font-bold uppercase tracking-wider text-fg">
             {l(item.date)}
           </span>
           {item.current && (
-            <span className="flex items-center gap-1.5 font-serif text-xs font-bold uppercase tracking-[0.2em] text-bolt">
+            <span className="flex items-center gap-1.5 font-serif text-sm font-bold uppercase tracking-[0.2em] text-bolt">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-bolt opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-bolt" />
@@ -86,7 +86,7 @@ function Card({ item, index }: { item: ExperienceItem; index: number }) {
         {item.highlights && (
           <ul className={`mt-4 flex flex-wrap gap-2 ${right ? "md:justify-end" : ""}`}>
             {item.highlights.map((h) => (
-              <li key={l(h)} className="rounded-full border border-fg/15 bg-fg/5 px-3 py-1 text-xs font-bold text-fg">
+              <li key={l(h)} className="rounded-full border border-fg/15 bg-fg/5 px-3 py-1 text-[13px] font-bold text-fg">
                 {l(h)}
               </li>
             ))}

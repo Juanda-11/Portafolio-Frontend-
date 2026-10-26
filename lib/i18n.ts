@@ -10,6 +10,7 @@ export function pick(text: Text, locale: Locale): string {
 }
 
 const es = {
+  "skip": "Saltar al contenido",
   "nav.aria": "Navegación principal",
   "nav.cv": "Descargar CV",
   "nav.theme.toLight": "Tema claro",
@@ -48,6 +49,8 @@ const es = {
   "projects.frontend": "Frontend",
   "projects.backend": "Backend",
   "projects.code": "Código",
+  "projects.apk": "APK",
+  "projects.exe": "Windows .exe",
   "projects.shot": "Captura de",
   "platform.Web": "Web",
   "platform.Móvil": "Móvil",
@@ -110,6 +113,7 @@ const es = {
 export type DictKey = keyof typeof es;
 
 const en: Record<DictKey, string> = {
+  "skip": "Skip to content",
   "nav.aria": "Main navigation",
   "nav.cv": "Download CV",
   "nav.theme.toLight": "Light theme",
@@ -148,6 +152,8 @@ const en: Record<DictKey, string> = {
   "projects.frontend": "Frontend",
   "projects.backend": "Backend",
   "projects.code": "Code",
+  "projects.apk": "APK",
+  "projects.exe": "Windows .exe",
   "projects.shot": "Screenshot of",
   "platform.Web": "Web",
   "platform.Móvil": "Mobile",

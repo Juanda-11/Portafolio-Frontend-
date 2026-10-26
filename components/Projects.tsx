@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Download, Server } from "lucide-react";
+import { ArrowUpRight, Download, Info, Monitor, Server } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 import { projects, type Platform, type Project } from "@/data/projects";
 import { useT } from "@/lib/preferences";
@@ -70,7 +70,7 @@ function ProjectCard({ project: p, index }: { project: Project; index: number })
           {t(`platform.${p.platform}`)}
         </span>
         {p.demo && (
-          <span className="absolute right-4 top-4 flex items-center gap-2 rounded-full border border-fg/15 bg-night/80 px-3 py-1 font-serif text-xs font-bold uppercase tracking-[0.2em] text-fg backdrop-blur">
+          <span className="absolute right-4 top-4 flex items-center gap-2 rounded-full border border-fg/15 bg-night/80 px-3 py-1 font-serif text-sm font-bold uppercase tracking-[0.2em] text-fg backdrop-blur">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
@@ -85,11 +85,20 @@ function ProjectCard({ project: p, index }: { project: Project; index: number })
 
       <div className="flex flex-1 flex-col p-6">
         <h3 className="font-display text-3xl uppercase tracking-wide text-fg">{p.title}</h3>
+        {p.role && (
+          <p className="mt-1 font-serif text-sm font-semibold uppercase tracking-[0.2em] text-bolt">{l(p.role)}</p>
+        )}
         <p className="mt-3 flex-1 leading-relaxed text-muted">{l(p.description)}</p>
+        {p.hint && (
+          <p className="mt-3 flex items-start gap-2 rounded-xl bg-electric/10 px-3 py-2 text-sm text-fg/90">
+            <Info size={16} aria-hidden className="mt-0.5 shrink-0 text-bolt" />
+            {l(p.hint)}
+          </p>
+        )}
 
         <ul className="mt-5 flex flex-wrap gap-2">
           {p.tags.map((tag) => (
-            <li key={l(tag)} className="rounded-full border border-fg/15 bg-fg/5 px-3 py-1 text-xs font-bold text-fg">
+            <li key={l(tag)} className="rounded-full border border-fg/15 bg-fg/5 px-3 py-1 text-[13px] font-bold text-fg">
               {l(tag)}
             </li>
           ))}
@@ -111,7 +120,12 @@ function ProjectCard({ project: p, index }: { project: Project; index: number })
           )}
           {p.apk && (
             <LinkButton href={p.apk}>
-              <Download size={16} aria-hidden /> APK
+              <Download size={16} aria-hidden /> {t("projects.apk")}
+            </LinkButton>
+          )}
+          {p.exe && (
+            <LinkButton href={p.exe}>
+              <Monitor size={16} aria-hidden /> {t("projects.exe")}
             </LinkButton>
           )}
         </div>
