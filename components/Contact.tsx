@@ -6,7 +6,7 @@ import { ArrowUpRight, Check, Loader2, Mail, Send, TriangleAlert } from "lucide-
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { profile } from "@/lib/data";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
+const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000").trim().replace(/\/+$/, "");
 
 type Status = "idle" | "sending" | "success" | "error";
 
