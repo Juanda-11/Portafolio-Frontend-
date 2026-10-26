@@ -66,7 +66,17 @@ const es = {
   "exp.laboral": "Laboral",
   "exp.current": "Actual",
 
-  "contact.eyebrow": "04 — Contactos",
+  "process.eyebrow": "04 — Cómo trabajo",
+  "process.title1": "Cómo",
+  "process.title2": "trabajo",
+  "process.intro":
+    "Mi forma de llevar una idea hasta una interfaz que funciona, con ejemplos reales de mis proyectos.",
+  "process.step": "Paso",
+  "process.of": "de",
+  "process.practice": "En la práctica",
+  "process.listAria": "Pasos de mi proceso",
+
+  "contact.eyebrow": "05 — Contactos",
   "contact.title1": "Hablemos",
   "contact.title2": "pronto",
   "contact.intro": "¿Tienes un proyecto, una idea o quieres trabajar conmigo? Escríbeme y te respondo lo antes posible.",
@@ -156,7 +166,17 @@ const en: Record<DictKey, string> = {
   "exp.laboral": "Work",
   "exp.current": "Current",
 
-  "contact.eyebrow": "04 — Contact",
+  "process.eyebrow": "04 — How I work",
+  "process.title1": "How I",
+  "process.title2": "work",
+  "process.intro":
+    "My way of taking an idea to an interface that works, with real examples from my projects.",
+  "process.step": "Step",
+  "process.of": "of",
+  "process.practice": "In practice",
+  "process.listAria": "Steps of my process",
+
+  "contact.eyebrow": "05 — Contact",
   "contact.title1": "Let's",
   "contact.title2": "talk",
   "contact.intro": "Have a project, an idea or want to work with me? Write to me and I'll reply as soon as I can.",

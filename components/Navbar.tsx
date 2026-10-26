@@ -12,6 +12,7 @@ import {
   Moon,
   Sun,
   User,
+  Workflow,
 } from "lucide-react";
 import { navLinks, profile } from "@/lib/data";
 import { useLocale, useT, useTheme } from "@/lib/preferences";
@@ -24,6 +25,7 @@ const icons: Record<string, Icon> = {
   proyectos: FolderKanban,
   testimonios: MessageSquareQuote,
   experiencia: Briefcase,
+  proceso: Workflow,
   contacto: Mail,
 };
 

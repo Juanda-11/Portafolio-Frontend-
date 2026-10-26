@@ -85,5 +85,6 @@ export const navLinks: NavLink[] = [
   { id: "proyectos", label: { es: "Proyectos", en: "Projects" } },
   { id: "testimonios", label: { es: "Testimonios", en: "Testimonials" } },
   { id: "experiencia", label: { es: "Experiencia", en: "Experience" } },
+  { id: "proceso", label: { es: "Proceso", en: "Process" } },
   { id: "contacto", label: { es: "Contacto", en: "Contact" } },
 ];
