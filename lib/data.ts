@@ -26,7 +26,7 @@ export const profile = {
   emailPersonal: "juandaju448@gmail.com",
   github: "https://github.com/Juanda-11",
   linkedin: "https://www.linkedin.com/in/juan-david-jurado-paz-4900a7447",
-  photo: "/yo.jpg" as string | undefined,
+  photo: "/images/yo.jpg" as string | undefined,
 };
 
 /** Resumen corto (3–5 líneas) que se ve primero; el texto completo está en `about`. */
