@@ -2,6 +2,8 @@ import type { Localized } from "@/lib/i18n";
 
 export type Testimonial = {
   name: string;
+  /** Foto en /public/testimonials (opcional). Si no hay, se muestra un avatar ilustrado. */
+  photo?: string;
   role: Localized;
   /** Empresa o institución (si la hay). */
   organization?: string;

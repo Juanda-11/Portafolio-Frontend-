@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { testimonials } from "@/data/testimonials";
@@ -14,12 +15,36 @@ const reveal = {
   }),
 };
 
-function initials(name: string) {
-  return name
-    .split(" ")
-    .map((p) => p[0])
-    .slice(0, 2)
-    .join("");
+const palettes = [
+  ["#3b6dff", "#7c3aed"],
+  ["#38bdf8", "#3b6dff"],
+  ["#7c3aed", "#ec4899"],
+];
+
+/** Foto del testimonio o, mientras no haya, un avatar ilustrado con colores propios. */
+function Avatar({ name, photo, index }: { name: string; photo?: string; index: number }) {
+  const [from, to] = palettes[index % palettes.length];
+  return (
+    <span className="relative grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-full p-[3px]" style={{ background: `linear-gradient(135deg, ${from}, ${to})` }}>
+      <span className="relative block h-full w-full overflow-hidden rounded-full bg-panel">
+        {photo ? (
+          <Image src={photo} alt={name} fill sizes="64px" className="object-cover" />
+        ) : (
+          <svg viewBox="0 0 64 64" role="img" aria-label={name} className="h-full w-full">
+            <defs>
+              <linearGradient id={`av-${index}`} x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stopColor={from} stopOpacity="0.55" />
+                <stop offset="1" stopColor={to} stopOpacity="0.85" />
+              </linearGradient>
+            </defs>
+            <rect width="64" height="64" fill={`url(#av-${index})`} />
+            <circle cx="32" cy="25" r="11" fill="#fff" fillOpacity="0.92" />
+            <path d="M10 64 C10 47 20 41 32 41 C44 41 54 47 54 64 Z" fill="#fff" fillOpacity="0.92" />
+          </svg>
+        )}
+      </span>
+    </span>
+  );
 }
 
 export default function Testimonials() {
@@ -91,12 +116,7 @@ export default function Testimonials() {
               </ul>
 
               <figcaption className="mt-6 flex items-center gap-4 border-t border-fg/10 pt-5">
-                <span
-                  aria-hidden
-                  className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-bolt to-violet font-display text-lg text-white"
-                >
-                  {initials(item.name)}
-                </span>
+                <Avatar name={item.name} photo={item.photo} index={i} />
                 <span className="min-w-0">
                   <span className="block font-display text-xl uppercase tracking-wide text-fg">{item.name}</span>
                   <span className="block font-serif text-sm font-semibold uppercase tracking-[0.18em] text-bolt">

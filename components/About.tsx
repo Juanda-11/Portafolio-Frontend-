@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Briefcase, ChevronDown, GraduationCap, MapPin, School, Zap } from "lucide-react";
-import { about, profile, quickFacts, skillGroups } from "@/lib/data";
+import { about, aboutSummary, profile, quickFacts, skillGroups } from "@/lib/data";
 import { useT } from "@/lib/preferences";
 
 const factIcons = [MapPin, GraduationCap, Briefcase, School];
@@ -85,20 +85,17 @@ export default function About() {
             viewport={{ once: true, margin: "-80px" }}
             className="mt-6 space-y-4 text-base leading-relaxed text-muted sm:text-lg"
           >
-            <p>{l(about[0])}</p>
-            <AnimatePresence initial={false}>
-              {more && (
-                <motion.p
-                  key="more"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="overflow-hidden"
-                >
-                  {l(about[1])}
-                </motion.p>
-              )}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={more ? "full" : "summary"}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="space-y-4"
+              >
+                {more ? about.map((p) => <p key={p.es}>{l(p)}</p>) : <p>{l(aboutSummary)}</p>}
+              </motion.div>
             </AnimatePresence>
             <button
               type="button"
