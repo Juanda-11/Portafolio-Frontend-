@@ -30,7 +30,7 @@ const code = JetBrains_Mono({
 
 const title = "Juan David Jurado Paz · Desarrollo frontend y apps móviles";
 const description =
-  "Estudiante de Ingeniería de Software en Pasto, Colombia. Diseño y desarrollo interfaces web y apps para móvil, escritorio y smartwatch con Next.js, React Native y Expo.";
+  "Estudiante de Ingeniería de Software en Pasto, Colombia. Diseño y desarrollo interfaces web y apps para móvil, escritorio y smartwatch con Next.js, React Native y Expo. Disponible para prácticas profesionales.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
