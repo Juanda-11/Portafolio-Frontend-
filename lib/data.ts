@@ -49,10 +49,31 @@ export const quickFacts: { label: Localized; value: Text }[] = [
 
 export const skillGroups: { title: Localized; items: Text[] }[] = [
   {
-    title: { es: "Frameworks", en: "Frameworks" },
-    items: ["Next.js", "React", "React Native", "Expo", "Tailwind CSS", "Express"],
+    title: { es: "Frameworks y librerías", en: "Frameworks & libraries" },
+    items: [
+      "Next.js",
+      "React",
+      "React Native",
+      "Expo",
+      "Tailwind CSS",
+      "Node.js",
+      "Express",
+      "FastAPI",
+      "Vite",
+      "Electron",
+      "Framer Motion",
+      "Zod",
+    ],
   },
-  { title: { es: "Lenguajes", en: "Languages" }, items: ["TypeScript", "Java", "Python"] },
+  { title: { es: "Lenguajes", en: "Languages" }, items: ["TypeScript", "Python", "C++", "Java"] },
+  {
+    title: { es: "Datos y nube", en: "Data & cloud" },
+    items: ["MySQL", "Upstash Redis", "Railway", "Vercel"],
+  },
+  {
+    title: { es: "Herramientas", en: "Tools" },
+    items: ["GitHub", "VS Code", "Android Studio", "Vitest", "Jest"],
+  },
   {
     title: { es: "Intereses", en: "Interests" },
     items: [
@@ -74,8 +95,13 @@ export const stack = [
   "Tailwind CSS",
   "TypeScript",
   "Node.js · Express",
-  "Java",
+  "FastAPI",
+  "Electron",
+  "Vite",
   "Python",
+  "C++",
+  "MySQL",
+  "Upstash Redis",
   "UI / UX",
 ];
 
@@ -83,6 +109,7 @@ export const navLinks: NavLink[] = [
   { id: "inicio", label: { es: "Inicio", en: "Home" } },
   { id: "sobre-mi", label: { es: "Sobre mí", en: "About" } },
   { id: "proyectos", label: { es: "Proyectos", en: "Projects" } },
+  { id: "testimonios", label: { es: "Testimonios", en: "Testimonials" } },
   { id: "experiencia", label: { es: "Experiencia", en: "Experience" } },
   { id: "proceso", label: { es: "Proceso", en: "Process" } },
   { id: "contacto", label: { es: "Contacto", en: "Contact" } },

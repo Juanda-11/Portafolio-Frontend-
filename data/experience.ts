@@ -48,7 +48,7 @@ export const experience: ExperienceItem[] = [
     type: "academica",
     date: { es: "2023 – Ago 2024", en: "2023 – Aug 2024" },
     title: { es: "Modalidad en sistemas · Diplomado en saberes informáticos", en: "Systems track · Diploma in computing knowledge" },
-    place: { es: "Colegio", en: "High school" },
+    place: "Liceo de la Merced Maridíaz",
     description: { es: "Cursé la modalidad de sistemas en el colegio y terminé en agosto de 2024 con el diplomado.", en: "I took the systems track at school and finished in August 2024 with the diploma." },
   },
   {

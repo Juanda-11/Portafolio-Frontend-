@@ -21,7 +21,7 @@ const es = {
 
   "hero.eyebrow": "Portafolio · Diseño de Interfaces",
   "hero.open": "Open",
-  "hero.openFor": "a nuevos proyectos",
+  "hero.openFor": "a prácticas y proyectos",
   "hero.cv": "Descargar CV",
   "hero.projects": "Ver proyectos",
   "hero.sticker.semester": "4.º semestre",
@@ -59,7 +59,13 @@ const es = {
 
   "testimonials.title": "Testimonios",
 
-  "exp.eyebrow": "03 — Experiencia académica y laboral",
+  "testimonials.eyebrow": "03 — Testimonios",
+  "testimonials.title1": "Lo que",
+  "testimonials.title2": "dicen",
+  "testimonials.intro": "Personas para las que he desarrollado aplicaciones cuentan cómo fue trabajar conmigo.",
+  "testimonials.focus": "Aspectos que destaca",
+
+  "exp.eyebrow": "04 — Experiencia académica y laboral",
   "exp.title1": "Mi",
   "exp.title2": "trayectoria",
   "exp.intro": "Lo que he estudiado y dónde he trabajado, de lo más reciente a lo más antiguo.",
@@ -69,7 +75,7 @@ const es = {
   "exp.laboral": "Laboral",
   "exp.current": "Actual",
 
-  "process.eyebrow": "04 — Cómo trabajo",
+  "process.eyebrow": "05 — Cómo trabajo",
   "process.title1": "Cómo",
   "process.title2": "trabajo",
   "process.intro":
@@ -79,7 +85,7 @@ const es = {
   "process.practice": "En la práctica",
   "process.listAria": "Pasos de mi proceso",
 
-  "contact.eyebrow": "05 — Contactos",
+  "contact.eyebrow": "06 — Contactos",
   "contact.title1": "Hablemos",
   "contact.title2": "pronto",
   "contact.intro": "¿Tienes un proyecto, una idea o quieres trabajar conmigo? Escríbeme y te respondo lo antes posible.",
@@ -124,7 +130,7 @@ const en: Record<DictKey, string> = {
 
   "hero.eyebrow": "Portfolio · Interface Design",
   "hero.open": "Open",
-  "hero.openFor": "to new projects",
+  "hero.openFor": "to internships and projects",
   "hero.cv": "Download CV",
   "hero.projects": "View projects",
   "hero.sticker.semester": "4th semester",
@@ -162,7 +168,13 @@ const en: Record<DictKey, string> = {
 
   "testimonials.title": "Testimonials",
 
-  "exp.eyebrow": "03 — Academic and work experience",
+  "testimonials.eyebrow": "03 — Testimonials",
+  "testimonials.title1": "What they",
+  "testimonials.title2": "say",
+  "testimonials.intro": "People I have built applications for tell what it was like to work with me.",
+  "testimonials.focus": "Highlights",
+
+  "exp.eyebrow": "04 — Academic and work experience",
   "exp.title1": "My",
   "exp.title2": "journey",
   "exp.intro": "What I have studied and where I have worked, from most recent to oldest.",
@@ -172,7 +184,7 @@ const en: Record<DictKey, string> = {
   "exp.laboral": "Work",
   "exp.current": "Current",
 
-  "process.eyebrow": "04 — How I work",
+  "process.eyebrow": "05 — How I work",
   "process.title1": "How I",
   "process.title2": "work",
   "process.intro":
@@ -182,7 +194,7 @@ const en: Record<DictKey, string> = {
   "process.practice": "In practice",
   "process.listAria": "Steps of my process",
 
-  "contact.eyebrow": "05 — Contact",
+  "contact.eyebrow": "06 — Contact",
   "contact.title1": "Let's",
   "contact.title2": "talk",
   "contact.intro": "Have a project, an idea or want to work with me? Write to me and I'll reply as soon as I can.",
