@@ -15,6 +15,7 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     name: "Deisy Paz",
+    photo: "/images/testimonials/deisy-paz.webp",
     role: { es: "Dueña", en: "Owner" },
     organization: "Equimed de Nariño",
     quote: {
@@ -29,6 +30,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     name: "Milton Jurado",
+    photo: "/images/testimonials/milton-jurado.webp",
     role: { es: "Docente", en: "Teacher" },
     quote: {
       es: "Entre clases, reuniones y conferencias, organizar mi semana solía ser un dolor de cabeza. La aplicación que creó me permite visualizar toda mi carga académica y compromisos en un solo lugar de manera súper clara e intuitiva. Se nota el cuidado que pone en el diseño y en la experiencia de usuario; realmente hizo una herramienta pensada para facilitarme el día a día.",
@@ -42,6 +44,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     name: "Alexander Paz",
+    photo: "/images/testimonials/hidrotech.webp",
     role: { es: "Dueño", en: "Owner" },
     organization: "Hidrotech Nariño",
     quote: {
