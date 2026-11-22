@@ -29,6 +29,12 @@ export const profile = {
   photo: "/yo.jpg" as string | undefined,
 };
 
+/** Resumen corto (3–5 líneas) que se ve primero; el texto completo está en `about`. */
+export const aboutSummary: Localized = {
+  es: "Soy estudiante de cuarto semestre de Ingeniería de Software en la Universidad Cooperativa de Colombia, campus Pasto. Me interesan las aplicaciones móviles y web, el diseño de interfaces modernas y las soluciones tecnológicas que respondan a necesidades reales. Soy creativo y curioso.",
+  en: "I am a fourth-semester Software Engineering student at the Universidad Cooperativa de Colombia, Pasto campus. I am interested in mobile and web apps, modern interface design and technology solutions that answer real needs. I am creative and curious.",
+};
+
 export const about: Localized[] = [
   {
     es: "Soy estudiante de cuarto semestre de Ingeniería de Software en la Universidad Cooperativa de Colombia, campus Pasto. Me interesa el desarrollo de aplicaciones móviles y web, el diseño de interfaces modernas y la creación de soluciones tecnológicas que respondan a necesidades reales. He trabajado con lenguajes como Java, Python y TypeScript, además de tecnologías y frameworks como React Native y Expo, fortaleciendo mis conocimientos en programación, estructuras de datos, patrones de diseño y desarrollo de software.",

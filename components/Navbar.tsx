@@ -276,14 +276,24 @@ function FloatingControls() {
     "grid h-10 w-10 place-items-center rounded-full border border-fg/10 bg-panel/90 text-fg shadow-lg shadow-black/30 backdrop-blur transition active:scale-95";
 
   return (
-    <div className="fixed right-3 top-3 z-50 flex gap-2 lg:hidden">
+    <>
+      <a
+        href="#inicio"
+        aria-label={profile.name}
+        className="fixed left-3 top-3 z-50 flex items-center gap-2 rounded-full border border-fg/10 bg-panel/90 py-1 pl-1 pr-3 shadow-lg shadow-black/30 backdrop-blur lg:hidden"
+      >
+        <Logo size={32} className="rounded-xl" />
+        <span className="font-display text-base uppercase tracking-wide text-fg">{profile.shortName}</span>
+      </a>
+      <div className="fixed right-3 top-3 z-50 flex gap-2 lg:hidden">
       <button type="button" onClick={toggleLocale} aria-label={t("nav.lang.aria")} className={`${button} font-display text-sm`}>
         {locale.toUpperCase()}
       </button>
       <button type="button" onClick={toggleTheme} aria-label={t("nav.theme.aria")} className={button}>
         {theme === "dark" ? <Sun size={18} aria-hidden /> : <Moon size={18} aria-hidden />}
       </button>
-    </div>
+      </div>
+    </>
   );
 }
 
